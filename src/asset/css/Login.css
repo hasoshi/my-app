@@ -1,0 +1,155 @@
+
+/* .container {
+    min-height: 100vh;
+    display: flex;
+    
+    align-items: center;
+    background-color: white;
+} */
+.card {
+    float: right;
+    margin-right: 100px;
+    height: 450px;
+    width: 355px;
+    border-radius: 10px;
+    padding: 25px;
+    background-color: #197fc1;
+    margin-top: 70px;
+    
+}
+.input-text {
+    margin-left: 28px;
+    margin-top: 15px;
+    width: 250px;
+    position: relative;
+    
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons button {
+    height: 39px;
+    width: 250px;
+    border: none;
+    background-color: #2f6bb1;
+    border-radius: 7px;
+    outline: 0;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s
+}
+.forgot {
+    margin-top: 30px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+input[type="text"] {
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #197fc1;
+    padding-left: 40px;
+    padding-right: 27px;
+    
+}
+
+input[type="password"] {
+    height: 45px;
+    width: 100%;
+    border-radius: 5px;
+    border: 2px solid #197fc1;
+    padding-left: 40px;
+    padding-right: 27px;
+    
+}
+.input-text .fa-eye-slash {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    font-size: 15px;
+    cursor: pointer
+}
+
+.fa-lock {
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 15px
+}
+.fa-user {
+    position: absolute;
+    left: 12px;
+    top: 15px;
+    cursor: pointer;
+    font-size: 15px
+}
+
+.logo {
+    width: 230px;
+    height: 50px;
+    margin-left: 40px;
+}
+/* .background-bvsc{
+    width: 100%;
+    height: 100%;
+} */
+body{
+    background: url(../image/bvsc.jpg);
+    background-size: 90%;
+}
+.span {
+    margin-top: 15px;
+    font-size: 14px;
+}
+.flag {
+    margin-top: 15px;
+    font-size: 14px;
+}
+a {
+    color: white;
+}
+span.psw {
+    margin-left: 30px;
+}
+span.openacc {
+    margin-left: 25px;
+}
+
+.vietnam {
+    width: 10%;
+    height: 10%;
+    margin-left: 25px;
+}
+label {
+    color: #fff;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+.uk {
+    width: 10%;
+    height: 10%;
+    margin-left: 70px;
+}
+
+.text {
+    color: #fff;
+    font-size: 13px;
+    align-items: center;
+    margin-left: 20px;
+}
+
+hr {
+    width: 85%;
+    background-color: #fff;
+    margin-left: 20px;
+    
+}
