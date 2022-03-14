@@ -1,7 +1,6 @@
 
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import Login from "./components/Login";
 import Home from "./components/Home";
 
@@ -18,7 +17,6 @@ class App extends React.Component{
       // </div>
     );
   }
-  
 }
 
 export default App;
