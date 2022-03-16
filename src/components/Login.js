@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css'
 import '../asset/css/Login.css'
 import logo from '../asset/image/logo.png'
@@ -6,93 +6,114 @@ import vietnam from '../asset/image/vietnam.jpg'
 import uk from '../asset/image/uk.jpg'
 import { users } from '../data/UsersData';
 
-function Login() {
-  const [errorMessages, setErrorMessages] = useState({});
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  //isSubmitted, 
+class Login extends React.Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+    };
+  }
 
-  const errors = {
-      uname: "Sai tên đăng nhập",
-      pass: "Sai mật khẩu"
-  };
+  changeInputValue(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    var {uname, pass} = document.forms[0];
-    const userData = users.find((user) => user.username === uname.value); //&& user.password === password.value
-    if (userData) {
-      if (userData.password !== pass.value) {
-        setErrorMessages({ name: "password", message: errors.pass });
-      }else {
-        setIsSubmitted(true);
+  validationForm() {
+    let returnData = {
+      error : false,
+    }
+    const {password} = this.state
+    if(password.length < 6) {
+      returnData = {
+        error: true,
       }
-    }else {
-      setErrorMessages({ name: "username", message: errors.uname });
+    }
+    return returnData;
+  }
+  
+  submitForm(e) {
+    e.preventDefault();
+    const validation = this.validationForm()
+    var username = e.target.elements.username.value;
+    var password = e.target.elements.password.value;
+    // const usercheck = users.find(user => (user.username === username && user.password === password));
+    const usercheck = users.some((elem) => elem.username === username && elem.password === password);
+    if (validation.error) {
+      this.setState({
+        errorpass: 'Mật khẩu phải lớn hơn 6 ký tự'
+      });
+    }else if(usercheck) {
+      this.props.history.push('/Home/' + username);
+    }else{
+      this.setState({
+        erroruser: 'Sai tên đăng nhập hoặc mật khẩu'
+      });
     }
   };
 
-  const renderErrorMessage = (name) =>
-    name === errorMessages.name && (
-      <div className="error">{errorMessages.message}</div>
-  );
-// return (
-  const renderForm = (
-    <div className="login-bg">
-      <div className="card">
-        <img src={logo} alt="" className="logo"/>
-        <form className='loginForm'
-          onSubmit={handleSubmit}
-        >
+  render() {
+    return (
+      <div className="login-bg">
+        <div className="card">
+          <img src={logo} alt="" className="logo"/>
+          <form className='loginForm'
+          onSubmit={e => {
+            this.submitForm(e);}}
+          >
           <div className="input-text">
-            <input
-              type="text"
-              name="uname"
-              placeholder="Username"
-              aria-describedby="inputGroupPrepend2" required
-            />
-            <i className="fas fa-user"></i>
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={e => this.changeInputValue(e)}
+                aria-describedby="inputGroupPrepend2" required
+              />
+              <i className="fas fa-user"></i>
           </div>
           <p className='error'>
-            {renderErrorMessage("username")}
+            {this.state.erroruser !== '' ? this.state.erroruser: ''}
+            
           </p>
           <div className="input-text">
             <input
               type="password"
-              name="pass"
+              name="password"
               placeholder="Password"
-              // onChange={e => this.changeInputValue(e)}
+              onChange={e => this.changeInputValue(e)}
               aria-describedby="inputGroupPrepend2" required
             />
             <i className="fa fa-lock"></i>
           </div>
           <p className='error'>
-          {renderErrorMessage("password")}
+          {this.state.errorpass !== '' ? this.state.errorpass: ''}
+         
           </p>
           <div className="buttons">
-            <button type="submit" className="btn btn-warning btn-block">
-              Login
-            </button>
+              <button type="submit" className="btn btn-warning btn-block">
+                Login
+              </button>
           </div>
           <div className="span">
-            <span className="openacc"><a href="/">Open new account</a></span>
-            <span className="psw"><a href="/">Forget password</a></span>
+              <span className="openacc"><a href="/">Open new account</a></span>
+              <span className="psw"><a href="/">Forget password</a></span>
           </div>
           <div className="flag">
-            <img src={vietnam} className="vietnam" alt=""/><label>Tiếng Việt</label>
-            <img src={uk} className="uk" alt=""/><label className="uklabel">English</label>
+          <img src={vietnam} className="vietnam" alt=""/><label>Tiếng Việt</label>
+          <img src={uk} className="uk" alt=""/><label className="uklabel">English</label>
           </div>
           <hr></hr>
           <div className="text">Contact: (84-24) 3928 8080 - ext.699/(84-28) 3914 6888</div>
         </form>
-      </div>
-    </div>
-  // )
-);
-    return (
-      <div className="app">
-         {isSubmitted ? <div>User is successfully logged in</div> : renderForm}
-       </div>
+        </div>
+     
+        </div>
+    
     );
-}
+    }
+  }
 
 export default Login;
