@@ -4,8 +4,9 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 
-class App extends React.Component{
-  render() {
+// class App extends React.Component{
+//   render() {
+  function App() {
     return (
       // <div className="App">
       <BrowserRouter>
@@ -17,6 +18,5 @@ class App extends React.Component{
       // </div>
     );
   }
-}
 
 export default App;
