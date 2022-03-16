@@ -4,13 +4,12 @@ import '../asset/css/Login.css'
 import logo from '../asset/image/logo.png'
 import vietnam from '../asset/image/vietnam.jpg'
 import uk from '../asset/image/uk.jpg'
-import { users } from './UsersData';
+import { users } from '../data/UsersData';
 
 class Login extends React.Component {
   
   constructor(props) {
     super(props);
-    //Khởi tạo state chứa giá trị của input
     this.state = {
       username: "",
       password: "",
@@ -26,14 +25,11 @@ class Login extends React.Component {
   validationForm() {
     let returnData = {
       error : false,
-      msg: ''
     }
     const {password} = this.state
-    //Kiểm tra password
     if(password.length < 6) {
       returnData = {
         error: true,
-        msg: 'Mật khẩu phải lớn hơn 6 ký tự'
       }
     }
     return returnData;
@@ -44,46 +40,57 @@ class Login extends React.Component {
     const validation = this.validationForm()
     var username = e.target.elements.username.value;
     var password = e.target.elements.password.value;
-    //check username && pass
+
     const usercheck = users.find(user => (user.username === username && user.password === password));
     if (validation.error) {
-      alert(validation.msg)
+      this.setState({
+        errorpass: 'Mật khẩu phải lớn hơn 6 ký tự'
+      });
     }else if(usercheck) {
-    // } else if (users.some((elem) => elem.username === username && elem.password === password)) {
-      // alert('Login thành công!');
       this.props.history.push('/Home/' + username);
     }else{
-      alert('Sai tên đăng nhập hoặc mật khẩu');
+      this.setState({
+        erroruser: 'Sai tên đăng nhập hoặc mật khẩu'
+      });
     }
   };
 
   render() {
     return (
-      <div className="card">
-        <img src={logo} alt="" className="logo"/>
-        <form className='loginForm'
+      <div className="login-bg">
+        <div className="card">
+          <img src={logo} alt="" className="logo"/>
+          <form className='loginForm'
           onSubmit={e => {
             this.submitForm(e);
           }}
-        >
+          >
           <div className="input-text">
               <input
                 type="text"
                 name="username"
                 placeholder="Username"
                 onChange={e => this.changeInputValue(e)}
+                aria-describedby="inputGroupPrepend2" required
               />
-              <i class="fas fa-user"></i>
+              <i className="fas fa-user"></i>
           </div>
+          <p className='error'>
+            {this.state.erroruser !== '' ? this.state.erroruser: ''}
+          </p>
           <div className="input-text">
             <input
               type="password"
               name="password"
               placeholder="Password"
               onChange={e => this.changeInputValue(e)}
+              aria-describedby="inputGroupPrepend2" required
             />
             <i className="fa fa-lock"></i>
           </div>
+          <p className='error'>
+          {this.state.errorpass !== '' ? this.state.errorpass: ''}
+          </p>
           <div className="buttons">
               <button type="submit" className="btn btn-warning btn-block">
                 Login
@@ -100,7 +107,9 @@ class Login extends React.Component {
           <hr></hr>
           <div className="text">Contact: (84-24) 3928 8080 - ext.699/(84-28) 3914 6888</div>
         </form>
-      </div>
+        </div>
+     
+        </div>
     );
   }
 }
