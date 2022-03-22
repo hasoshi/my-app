@@ -1,7 +1,7 @@
 import { LOG_IN } from "../actions/loginActions";
 const initState = {
     Login: {
-        "username": localStorage.getItem("username"),
+        username: '',
         isLogin: false
     }
 }
@@ -13,7 +13,6 @@ const loginReducer = (state = initState, action) => {
                ...state,
                Login: {
                    ...state.Login,
-                   username: action.payload,
                    isLogin: action.payload
                }
                 
