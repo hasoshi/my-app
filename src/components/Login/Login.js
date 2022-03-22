@@ -7,6 +7,7 @@ import uk from '../../assets/image/uk.jpg'
 import { users } from '../../data/UsersData';
 import { useHistory } from 'react-router-dom';
 import {logins} from '../../redux/actions/loginActions'
+import { useSelector } from 'react-redux';
 
 function Login() {
 
@@ -19,19 +20,19 @@ function Login() {
   const [errors, setErrs] = useState("true");
   
   const history = useHistory();
+  const user = useSelector(state=>state.login.username);
 
   const changeHandler = (e) => {
     setData({...data, [e.target.name]: e.target.value})
   }
+  
   const checkUser = (users) => {
     const usercheck = users.find(user => (
       user.username === username && user.password === password))
     if(usercheck) {
       console.log('Đăng nhập thành công');
-      history.push('/Home/' + username);
-      logins({
-        isLogin: true
-      })
+      history.push('/Home/' + user);
+      logins(true);
     }else {
       console.log('Sai mật khẩu hoặc username');
       setErrs("false");

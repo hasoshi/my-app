@@ -1,11 +1,7 @@
 .body {
   font-family: Arial, Helvetica, sans-serif;
 }
-#nav{
-  background-color: #494d4e;
-  height: 50px;
-  width: 100%;
-}
+
 .logo-home{
   width: 280px;
   padding: 10px;
@@ -17,25 +13,12 @@
   margin-left: 40px;
   margin-right: 30px;
 }
-
-.setting-box {
-  width: 300px;
-  height: 130px;
+.span-item {
+  margin-left: 10px;
 }
-.setting-box-theme{
-  background-color: #d5dae0;
-  width: 260px;
-  height: 60px;
-  border-radius: 5px;
-  margin-left: 20px;
-}
-.setting-box-lang{
-  background-color: #d5dae0;
-  width: 260px;
-  height: 60px;
-  margin-top: 8px;
-  border-radius: 5px;
-  margin-left: 20px;
+.input-item {
+  margin-top: 10px;
+  
 }
 
 #flagVn, #flagUs{
@@ -102,7 +85,34 @@ body {
   color: #999;
   height: 100%;
   transition: background-color 0.25s ease-in-out;
-  
+  .setting-box {
+    width: 300px;
+    height: 130px;
+    background-color: #3a3a3a;
+  }
+  .setting-box-theme{
+    background-color: #222222;
+    width: 260px;
+    height: 60px;
+    border-radius: 5px;
+    margin-left: 20px;
+  }
+  .setting-box-lang{
+    background-color: #222222;
+    width: 260px;
+    height: 60px;
+    margin-top: 8px;
+    border-radius: 5px;
+    margin-left: 20px;
+  }  
+  #nav{
+    background-color: #494d4e;
+    height: 50px;
+    width: 100%;
+  }
+  span {
+    color: white;
+  }
 }
 
 .light-mode {
@@ -110,6 +120,30 @@ body {
   color: #333;
   height: 100%;
   transition: background-color 0.25s ease-in-out;
+  #nav{
+    background-color: #236abb;
+    height: 50px;
+    width: 100%;
+  }
+  .setting-box {
+    width: 300px;
+    height: 130px;
+  }
+  .setting-box-theme{
+    background-color: #d5dae0;
+    width: 260px;
+    height: 60px;
+    border-radius: 5px;
+    margin-left: 20px;
+  }
+  .setting-box-lang{
+    background-color: #d5dae0;
+    width: 260px;
+    height: 60px;
+    margin-top: 8px;
+    border-radius: 5px;
+    margin-left: 20px;
+  }  
 }
 
 .container {

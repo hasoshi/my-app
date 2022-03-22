@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../Home/Home.css'
+import '../Home/Home.scss'
 import logo_BVSC from '../../assets/image/logo_BVSC.png' 
 import {BsFillPersonLinesFill} from 'react-icons/bs';
 import { Dropdown} from 'react-bootstrap';
@@ -23,14 +23,14 @@ function Home() {
     <>
       <div className={checkTheme === 'dark' ? "dark-mode" : "light-mode"}>
         <header>
-          <nav class="navbar navbar-expand-sm" id='nav'>
-            <ul class="navbar-nav">
+          <nav className="navbar navbar-expand-sm" id='nav'>
+            <ul className="navbar-nav">
                 <img className='logo-home' src={logo_BVSC} alt="#"/>
                 <div className="date-time">
                   <span>&nbsp;</span>
                   <span>{date}</span>
                   <span>&nbsp;</span>
-                  <span >{time}</span>
+                  <span>{time}</span>
                 </div>
                 <marquee className="moving-header">
                   <p className="marquee-header">
@@ -56,7 +56,7 @@ function Home() {
                     <span className="marquee-item">61.192.002 tỷ</span>
                   </p>
                 </marquee>
-              <li class="nav-user">
+              <div className="nav-user">
                 <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic">
                     <BsFillPersonLinesFill size="2em" color="#ffff" />
@@ -68,45 +68,49 @@ function Home() {
                           <input type='radio'
                             name='radio_theme'
                             value='light'
+                            className='input-item'
                             checkTheme={checkTheme === 'light'}
                             onChange={changeHandlerTheme}
                           />
-                          <span>Sáng</span>
+                          <span className="span-item">Sáng</span>
                         </div>
                         <div className='setting-option'>
                           <input type='radio'
                             name='radio_theme'
                             value='dark'
+                            className='input-item'
                             checkTheme={checkTheme === 'dark'}
                             onChange={changeHandlerTheme}
                           />
-                          <span>Tối</span>
+                          <span className="span-item">Tối</span>
                         </div>
                       </div>
                       <div className='setting-box-lang'>
                         <div className='setting-option'>
                           <input type='radio'
                             name='radio_theme'
+                            className='input-item'
                             value='usk'
                             checkLang={checkLang === 'usk'}
                             onChange={changeHandlerLang}
                           />
-                          <span>Tiếng anh</span>
+                          <span className="span-item">Tiếng anh</span>
                         </div>
                         <div className='setting-option'>
                           <input type='radio'
                             name='radio_theme'
                             value='viet'
+                            className='input-item'
                             checkLang={checkLang === 'viet'}
                             onChange={changeHandlerLang}
                           />
-                          <span>Tiếng việt</span>
+                          <span className="span-item">Tiếng việt</span>
                         </div>
                       </div>
                     </div>    
                   </Dropdown.Menu>
                 </Dropdown>
-              </li>
+              </div>
             </ul>
           </nav>
         </header>

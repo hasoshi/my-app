@@ -8,9 +8,9 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
-import loginReducer from './redux/reducers/loginReducer'
+import mainReducer from './redux/reducers/rootReducer';
 
-const store = createStore(loginReducer);
+const store = createStore(mainReducer);
 
 ReactDOM.render(
   <Provider store={store}>
