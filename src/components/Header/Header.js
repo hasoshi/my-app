@@ -11,7 +11,6 @@ import uk from '../../assets/image/uk.jpg'
 import vietnam from '../../assets/image/vietnam.jpg'
 import { useTranslation } from 'react-i18next';
 
-
 function Header() {
   
   const currDate = new Date();
@@ -41,9 +40,8 @@ function Header() {
       setCheckLang(e.target.value);
       dispatch(SwitchLang(
         e.target.value
-      ))
-    
-    }else if(checkLang === 'en') {
+      )) 
+    } else if(checkLang === 'en') {
       i18n.changeLanguage('en');
       setCheckLang(e.target.value);
       dispatch(SwitchLang(
@@ -61,14 +59,12 @@ function Header() {
 
   const User = useSelector((state) => state.Login.username)
     return(
-      
       <div className={checkTheme === 'dark' ? "dark-mode" : "light-mode"}>
-      <header>
         <nav className="navbar navbar-expand-sm" id='nav'>
           <ul className="navbar-nav">
               <img className='logo-home' src={logo_BVSC} alt="#"/>
               <div className="date-time">
-              <FiClock className="clock" size="1.5em" color="#236abb"/>
+              <FiClock className="clock" size="1.5em"/>
                 <span>&nbsp;</span>
                 <span>&nbsp;</span>
                 <span>{date}</span>
@@ -143,20 +139,20 @@ function Header() {
                       <div className="row">
                         <div className="col">
                           <input type='radio'
-                            name='radio_theme'
+                            name='radio_lang'
                             value='vi'
                             // checkLang={checkLang === 'vi'}
-                            onChange={changeHandlerLang}
+                            onClick={changeHandlerLang}
                           />
                           <img src={uk} className="uk2" alt=""/>
                           
                         </div>
                         <div className="col">
                           <input type='radio'
-                            name='radio_theme'
+                            name='radio_lang'
                             value='en'
                             // checkLang={checkLang === 'en'}
-                            onChange={changeHandlerLang}
+                            onClick={changeHandlerLang}
                           />
                           <img src={vietnam} className="vietnam2" alt=""/>
                         </div>  
@@ -167,7 +163,6 @@ function Header() {
             </div>
           </ul>
         </nav>
-      </header>
       </div>
     );
 }

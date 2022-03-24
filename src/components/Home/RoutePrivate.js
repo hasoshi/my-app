@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { checkLogin} from '../../redux/selectors/selectorLogin';
 import Login from '../Login/Login';
 
-function HomePage(){
+function RoutePrivate(){
     const usercheck = useSelector(checkLogin);
     
     if(usercheck){
@@ -13,4 +13,4 @@ function HomePage(){
         return <Login />
     }
 }
-export default HomePage;
+export default RoutePrivate;

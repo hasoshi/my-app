@@ -1,8 +1,4 @@
 
- .body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-  
   .logo-home{
     width: 280px;
     padding: 10px;
@@ -61,34 +57,15 @@
     margin-right: 5px;
     right: 5px; 
   }
-  
-  /*Theme*/
-  * {
-    box-sizing: border-box;
-    margin: 0px;
-    padding: 0px;
-  }
-  #root {
-    height: 100%;
-  }
-  
-  html,
-  body {
-    min-height: 100vh;
-    height: 100%;
-  }
   input[type="radio"] { 
     width: 17px;
     height: 17px;
   }
-  // .icontheme {
-  //   font-size: 40px;
-  // }
   .col {
     margin-left: 30px;
   }
   .row{
-    padding-top: 15px;
+    padding-top: 10px;
   }
   .vietnam2 {
     width: 30px;
@@ -108,10 +85,8 @@
   .buttons2 {
     width: 450px;
     height: 5px;
-    // margin-right: 10px;
     margin-top: 18px;
-    
-    
+     
   }
   .bt {
     background-color: #236abb;
@@ -124,28 +99,24 @@
     margin-left: 50px;
   }
   
-  // .setting-box {
-    //   width: 300px;
-    //   height: 130px;
-    //   background-color: #3a3a3a;
-    // }
   .dark-mode {
+    position: fixed;
     background-color: #1a1919;
     color: #999;
     height: 100%;
     transition: background-color 0.25s ease-in-out;
     @media (min-width: 576px) {
-    .navbar-expand-sm .navbar-nav .dropdown-menu {
-      position: absolute;
-      background-color: #3a3a3a;
-      width: 310px;
-      height: 200px;
+      .navbar-expand-sm .navbar-nav .dropdown-menu {
+        position: absolute;
+        background-color: #3a3a3a;
+        width: 310px;
+        height: 200px;
+      }
     }
-  }
     .setting-box-theme{
       background-color: #222222;
       width: 270px;
-      height: 70px;
+      height: 60px;
       border-radius: 5px;
       margin-left: 20px;
       margin-top: 5px;
@@ -164,10 +135,13 @@
       width: 100%;
     }
     span {
-      color: white;
+      color: #efefef;
     }
     .fname {
       margin-left: 140px;
+    }
+    .clock {
+      color: #236abb;
     }
     
   }
@@ -186,7 +160,7 @@
     @media (min-width: 576px) {
       .navbar-expand-sm .navbar-nav .dropdown-menu {
         position: absolute;
-        background-color: white;
+        background-color: #efefef;
         width: 310px;
         height: 200px;
       }
@@ -209,6 +183,9 @@
     }  
     .fname {
       margin-left: 140px;
+    }
+    .clock {
+      color: #efefef;
     }
   }
   
