@@ -18,14 +18,14 @@
     
 }
 
-.buttons {
+.buttons1 {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.buttons button {
+.buttons1 button {
     height: 39px;
     width: 250px;
     border: none;

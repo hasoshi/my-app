@@ -1,0 +1,20 @@
+{
+    "home": {
+        "theme": "Giao diện",
+        "light": "Sáng",
+        "dark": "Tối",
+        "lang": "Ngôn ngữ",
+        "1": "KL thỏa thuận:",
+        "3": "KLGD lô lẻ:",
+        "2": "1.984.252 tỷ",
+        "4":"12.558.999 tỷ",
+        "5":"GT thoả thuận:",
+        "6":"1.235.468 tỷ",
+        "7": "KLGD:",
+        "8":"61.192.002 tỷ",
+        "9": "GTGD",
+        "logout": "Đăng xuất"
+        
+
+    }
+}

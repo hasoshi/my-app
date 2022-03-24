@@ -6,9 +6,8 @@ import vietnam from '../../assets/image/vietnam.jpg'
 import uk from '../../assets/image/uk.jpg'
 import { users } from '../../data/UsersData';
 import { useHistory } from 'react-router-dom';
-import {logins} from '../../redux/actions/loginActions'
+import { GetUser, logins } from '../../redux/actions/action';
 import { useDispatch } from 'react-redux';
-// import { useSelector } from 'react-redux';
 
 function Login() {
 
@@ -31,7 +30,8 @@ function Login() {
     if(usercheck) {
       console.log('Đăng nhập thành công');
       dispatch(logins(true));
-      history.push('/Home/' + username);
+      dispatch(GetUser(username));
+      history.push('/Home/'+ username);
 
     }else {
       console.log('Sai mật khẩu hoặc username');
@@ -81,7 +81,7 @@ function Login() {
         <p className="error">
         {errors === "false" && (<div> Sai tên đăng nhập hoặc mật khẩu</div>)}
         </p>
-        <div className="buttons">
+        <div className="buttons1">
             <button type="submit" className="btn btn-warning btn-block">
               Login
             </button>

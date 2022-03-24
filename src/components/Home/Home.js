@@ -2,23 +2,46 @@ import React, {useState} from 'react';
 import '../Home/Home.scss'
 import logo_BVSC from '../../assets/image/logo_BVSC.png' 
 import {BsFillPersonLinesFill} from 'react-icons/bs';
-import { Dropdown} from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { logouts, SwitchTheme, SwitchLang, GetUser } from '../../redux/actions/action';
+import uk from '../../assets/image/uk.jpg'
+import vietnam from '../../assets/image/vietnam.jpg'
+import { useTranslation } from 'react-i18next';
+
 function Home() {
 
   const currDate = new Date();
   const date = currDate.toLocaleDateString();
   const time = currDate.toLocaleTimeString( );
   
-  const [checkTheme, setCheckTheme] = useState('dark')
+  const themeMode = useSelector((state) => state.Theme.themeMode)
+  const [checkTheme, setCheckTheme] = useState(themeMode)
   const changeHandlerTheme = (e) => {
     setCheckTheme(e.target.value);
+    dispatch(SwitchTheme(
+      e.target.value
+    ))
   };
 
-  const [checkLang, setCheckLang] = useState('viet')
+  const { t } = useTranslation();
+  const langMode = useSelector((state) => state.Lang.langis)
+  const [checkLang, setCheckLang] = useState(langMode)
   const changeHandlerLang = (e) => {
     setCheckLang(e.target.value);
+    dispatch(SwitchLang(
+      e.target.value
+    ))
   };
 
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logouts(false))
+    dispatch(GetUser(''))
+  }
+
+  const User = useSelector((state) => state.Login.username)
+  
   return (
     <>
       <div className={checkTheme === 'dark' ? "dark-mode" : "light-mode"}>
@@ -34,80 +57,84 @@ function Home() {
                 </div>
                 <marquee className="moving-header">
                   <p className="marquee-header">
-                    <span className="marquee-item">KL thoả thuận: </span>
-                    <span className="marquee-item">1.984.252 tỷ</span>
-                    <span className="marquee-item">KLGD lô lẻ: </span>
+                    <span className="marquee-item">{t("home.1")}</span>
+                    <span className="marquee-item">{t("home.2")}</span>
+                    <span className="marquee-item">{t("home.3")} </span>
                     <span className="marquee-item">16.702</span>
-                    <span className="marquee-item">GTGD: </span>
-                    <span className="marquee-item">12.558.999 tỷ</span>
-                    <span className="marquee-item">GT thoả thuận: </span>
-                    <span className="marquee-item">1.235.468 tỷ</span>
-                    <span className="marquee-item">KLGD: </span>
-                    <span className="marquee-item">61.192.002 tỷ</span>
-                    <span className="marquee-item">KL thoả thuận: </span>
-                    <span className="marquee-item">1.984.252 tỷ</span>
-                    <span className="marquee-item">KLGD lô lẻ: </span>
+                    <span className="marquee-item">{t("home.9")}</span>
+                    <span className="marquee-item">{t("home.4")}</span>
+                    <span className="marquee-item">{t("home.5")}</span>
+                    <span className="marquee-item">{t("home.6")}</span>
+                    <span className="marquee-item">{t("home.7")}</span>
+                    <span className="marquee-item">{t("home.8")}</span>
+                    <span className="marquee-item">{t("home.1")}</span>
+                    <span className="marquee-item">{t("home.2")}</span>
+                    <span className="marquee-item">{t("home.3")}</span>
                     <span className="marquee-item">16.702</span>
-                    <span className="marquee-item">GTGD: </span>
-                    <span className="marquee-item">12.558.999 tỷ</span>
-                    <span className="marquee-item">GT thoả thuận: </span>
-                    <span className="marquee-item">1.235.468 tỷ</span>
-                    <span className="marquee-item">KLGD: </span>
-                    <span className="marquee-item">61.192.002 tỷ</span>
+                    <span className="marquee-item">{t("home.9")}</span>
+                    <span className="marquee-item">{t("home.4")}</span>
+                    <span className="marquee-item">{t("home.5")} </span>
+                    <span className="marquee-item">{t("home.6")}</span>
+                    <span className="marquee-item">{t("home.7")}</span>
+                    <span className="marquee-item">{t("home.8")}</span>
                   </p>
                 </marquee>
-              <div className="nav-user">
+              <div className="buttons2">
+                <button type="button" onClick={handleLogout}>{t("home.logout")}</button>
+              </div>
+              <div className="dropdown">
                 <Dropdown>
                   <Dropdown.Toggle variant="" id="dropdown-basic">
-                    <BsFillPersonLinesFill size="2em" color="#ffff" />
+                    <BsFillPersonLinesFill size="1.5em" color="#ffff" />
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                    <div className='setting-box'>
+                    <span className='fname'>{User}</span>
                       <div className='setting-box-theme'>
-                        <div className='setting-option'>
+                        <span id='lang'>{t("home.theme")}</span>
+                        <div className="row">
+                          <div className="col">
                           <input type='radio'
                             name='radio_theme'
                             value='light'
-                            className='input-item'
                             checkTheme={checkTheme === 'light'}
                             onChange={changeHandlerTheme}
                           />
-                          <span className="span-item">Sáng</span>
-                        </div>
-                        <div className='setting-option'>
+                            <span className="span-item">{t("home.light")}</span>
+                          </div>
+                          <div className="col">
                           <input type='radio'
                             name='radio_theme'
                             value='dark'
-                            className='input-item'
                             checkTheme={checkTheme === 'dark'}
                             onChange={changeHandlerTheme}
                           />
-                          <span className="span-item">Tối</span>
+                          <span className="span-item">{t("home.dark")}</span>
+                          </div>
                         </div>
                       </div>
                       <div className='setting-box-lang'>
-                        <div className='setting-option'>
-                          <input type='radio'
-                            name='radio_theme'
-                            className='input-item'
-                            value='usk'
-                            checkLang={checkLang === 'usk'}
-                            onChange={changeHandlerLang}
-                          />
-                          <span className="span-item">Tiếng anh</span>
+                        <span id='lang'>{t("home.lang")}</span>
+                        <div className="row">
+                          <div className="col">
+                            <input type='radio'
+                              name='radio_theme'
+                              value='vi'
+                              checkLang={checkLang === 'vi'}
+                              onChange={changeHandlerLang}
+                            />
+                            <img src={vietnam} className="vietnam2" alt=""/>
+                          </div>
+                          <div className="col">
+                            <input type='radio'
+                              name='radio_theme'
+                              value='eng'
+                              checkLang={checkLang === 'usk'}
+                              onChange={changeHandlerLang}
+                            />
+                            <img src={uk} className="uk2" alt=""/>
+                          </div>  
                         </div>
-                        <div className='setting-option'>
-                          <input type='radio'
-                            name='radio_theme'
-                            value='viet'
-                            className='input-item'
-                            checkLang={checkLang === 'viet'}
-                            onChange={changeHandlerLang}
-                          />
-                          <span className="span-item">Tiếng việt</span>
-                        </div>
-                      </div>
-                    </div>    
+                      </div>   
                   </Dropdown.Menu>
                 </Dropdown>
               </div>
