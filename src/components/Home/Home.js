@@ -24,15 +24,26 @@ function Home() {
     ))
   };
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const langMode = useSelector((state) => state.Lang.langis)
   const [checkLang, setCheckLang] = useState(langMode)
   const changeHandlerLang = (e) => {
-    setCheckLang(e.target.value);
-    dispatch(SwitchLang(
-      e.target.value
+    if(checkLang === "en") {
+      i18n.changeLanguage("en");
+      setCheckLang(e.target.value);
+      dispatch(SwitchLang(
+        e.target.value
     ))
+    }else if(checkLang === "vi") {
+      i18n.changeLanguage("vi");
+      setCheckLang(e.target.value);
+      dispatch(SwitchLang(
+        e.target.value
+    ))
+    }
   };
+
+
 
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -119,19 +130,20 @@ function Home() {
                             <input type='radio'
                               name='radio_theme'
                               value='vi'
-                              checkLang={checkLang === 'vi'}
+                              // checkLang={checkLang === 'vi'}
                               onChange={changeHandlerLang}
                             />
-                            <img src={vietnam} className="vietnam2" alt=""/>
+                            <img src={uk} className="uk2" alt=""/>
+                            
                           </div>
                           <div className="col">
                             <input type='radio'
                               name='radio_theme'
-                              value='eng'
-                              checkLang={checkLang === 'usk'}
+                              value='en'
+                              // checkLang={checkLang === 'en'}
                               onChange={changeHandlerLang}
                             />
-                            <img src={uk} className="uk2" alt=""/>
+                            <img src={vietnam} className="vietnam2" alt=""/>
                           </div>  
                         </div>
                       </div>   
