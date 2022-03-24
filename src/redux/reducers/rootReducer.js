@@ -7,7 +7,7 @@ const initState = {
     Theme: {
         themeMode: 'dark'
     },
-    Lang:{
+    Lang: {
         langis:'vi'
     }
 }

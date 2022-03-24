@@ -9,7 +9,7 @@ import Home from "./components/Home/Home";
       <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login}/>
-        <Route path="/Home/:username" component={Home}/>
+        <Route path="/Home" component={Home}/>
       </Switch> 
       </BrowserRouter>
     );

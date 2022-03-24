@@ -7,30 +7,30 @@ export const logins = (data) => {
     };
 }
 export const logouts = (data) => {
-    return{
+    return {
         type: LOG_OUT,
         payload: data
     }
 }
 
 export const SwitchTheme = (text) => {
-    return{
+    return {
         type:SWITCH_THEME,
         payload: text
     }
 }
 
 export const SwitchLang = (text) => {
-    return{
+    return {
         type: CHANGE_LANG,
         payload: text
     }
 }
 
 export const GetUser = (data) => {
-    return{
+    return {
         type:GET_USER,
-        payload:data
+        payload: data
     }
 }
 

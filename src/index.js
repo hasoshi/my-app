@@ -16,7 +16,7 @@ import { I18nextProvider } from 'react-i18next'
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-    <I18nextProvider i18n={i18n}>
+      <I18nextProvider i18n={i18n}>
       <App />
       </I18nextProvider>
     </PersistGate>

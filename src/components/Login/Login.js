@@ -31,7 +31,7 @@ function Login() {
       console.log('Đăng nhập thành công');
       dispatch(logins(true));
       dispatch(GetUser(username));
-      history.push('/Home/'+ username);
+      history.push('/Home');
 
     }else {
       console.log('Sai mật khẩu hoặc username');

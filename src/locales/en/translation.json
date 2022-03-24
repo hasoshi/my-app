@@ -4,15 +4,15 @@
         "light": "Light",
         "dark": "Dark",
         "lang": "Language",
-        "1": "Putthrought TransVol",
-        "3": "Oddlot TransVal",
+        "1": "Putthrought TransVol: ",
+        "3": "Oddlot TransVal: ",
         "2": "1.984.252 billion",
         "4":"12.558.999 billion",
-        "5":"Putthrought TransVal",
+        "5":"Putthrought TransVal: ",
         "6":"1.235.468 billion",
-        "7": "TransVol:",
+        "7": "TransVol: ",
         "8":"61.192.002 billion",
-        "9": "TransVal",
+        "9": "TransVal: ",
         "logout": "Log out"
     }
 }
