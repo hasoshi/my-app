@@ -2,11 +2,9 @@ import React from 'react';
 import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
 import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
 
 function PriceBoard() {   
   const themeMode = useSelector((state) => state.Theme.themeMode);
-  const { t, i18n } = useTranslation();
 
   const DisplayData = hose.map(data => {
     return(
