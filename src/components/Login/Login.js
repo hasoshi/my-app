@@ -8,6 +8,7 @@ import { users } from '../../data/UsersData';
 import { useHistory } from 'react-router-dom';
 import { GetUser, logins } from '../../redux/actions/action';
 import { useDispatch } from 'react-redux';
+import get_login from '../../service/UserService';
 
 function Login() {
 
@@ -20,18 +21,16 @@ function Login() {
   const [errors, setErrs] = useState("true");
 
   const history = useHistory();
-
-  // const user = useSelector(state=>state.login.username);
   const dispatch = useDispatch();
 
   const checkUser = (users) => {
-    const usercheck = users.find(user => (
-      user.username === username && user.password === password))
+    const usercheck = get_login(username, password);
     if(usercheck) {
       console.log('Đăng nhập thành công');
       dispatch(logins(true));
       dispatch(GetUser(username));
       history.push('/Home');
+      
 
     }else {
       console.log('Sai mật khẩu hoặc username');

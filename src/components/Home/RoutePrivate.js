@@ -5,9 +5,9 @@ import { checkLogin} from '../../redux/selectors/selectorLogin';
 import Login from '../Login/Login';
 
 function RoutePrivate(){
-    const usercheck = useSelector(checkLogin);
+    const user = useSelector(checkLogin);
     
-    if(usercheck){
+    if(user){
         return <Home />
     }else{
         return <Login />

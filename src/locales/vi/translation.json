@@ -13,8 +13,12 @@
         "7": "KLGD: ",
         "8":"61.192.002 tỷ",
         "9": "GTGD: ",
-        "logout": "Đăng xuất"
-        
-
+        "logout": "Đăng xuất",
+        "text0": "Đơn vị TT cơ sở: Giá: ",
+        "text1": " Khối lượng: ",
+        "text2": " - Đơn vị TT phái sinh: Giá: ",
+        "text4": " - Đơn vị TT lô lẻ: Khối lượng: ",
+        "footer1": "Đặt hàng nhanh",
+        "footer2": "Bảng giá"
     }
 }

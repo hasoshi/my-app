@@ -27,7 +27,7 @@ const rootReducer = (state = initState, action) => {
                 ...state,   
                 Login: {
                     ...state.Login,
-                    username:action.payload
+                    username:action.payload,
                 }
             }
         }
