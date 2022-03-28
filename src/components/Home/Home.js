@@ -21,7 +21,7 @@ function Home() {
         setInterval(() => {
             const date = new Date();
             setTime(date.toLocaleTimeString());
-        }, 10000);
+        }, 1000);
     }, []);
   
   //check theme mode
@@ -170,27 +170,6 @@ function Home() {
             </div>
         </div>
          {/* Body */}
-        <div className="menu-tab">
-          <ul>
-            <li className="search-tab">
-              <input 
-                type="text" 
-                className="search" 
-                placeholder="Tìm kiếm mã chứng khoán"
-              />
-            </li>
-            <li class="dropdown2">
-              <a href="javascript:void(0)" class="dropbtn">Danh mục theo dõi</a>
-              <div class="dropdown2-content">
-              <input 
-                type="text" 
-                className="search" 
-                placeholder="Tạo danh mục mới..."
-              />
-              </div>
-            </li>
-          </ul>
-        </div>
         <PriceBoard/>
       </div>
       {/* Footer */}

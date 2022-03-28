@@ -1,8 +1,13 @@
 import React from 'react';
-import './PriceBoard.css'
+import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
+import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 function PriceBoard() {   
+  const themeMode = useSelector((state) => state.Theme.themeMode);
+  const { t, i18n } = useTranslation();
+
   const DisplayData = hose.map(data => {
     return(
       <tr>
@@ -36,7 +41,7 @@ function PriceBoard() {
   })
   return (
     <>
-    <table className="table">
+    <table className={themeMode === 'dark' ? 'dark' : 'light'} >
       <thead>
         <tr>
           <th colSpan="1" rowSpan="2">Mã CK</th>
