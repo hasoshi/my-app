@@ -5,7 +5,7 @@ import logo from '../../assets/image/logo.png'
 import vietnam from '../../assets/image/vietnam.jpg'
 import uk from '../../assets/image/uk.jpg'
 import { users } from '../../data/UsersData';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GetUser, logins } from '../../redux/actions/action';
 import { useDispatch } from 'react-redux';
 import get_login from '../../service/UserService';
@@ -20,16 +20,17 @@ function Login() {
   const {username, password} = data;
   const [errors, setErrs] = useState("true");
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const checkUser = (users) => {
     const usercheck = get_login(username, password);
     if(usercheck) {
       console.log('Đăng nhập thành công');
+      const dataUser = { username: usercheck.username, fullname: usercheck.fullname};
       dispatch(logins(true));
-      dispatch(GetUser(username));
-      history.push('/Home');
+      dispatch(GetUser(dataUser));
+      navigate('/Home');
       
 
     }else {

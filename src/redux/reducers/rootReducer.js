@@ -2,6 +2,7 @@ import { LOG_IN, LOG_OUT, GET_USER, SWITCH_THEME, CHANGE_LANG } from "../actions
 const initState = {
     Login: {
         username: '',
+        fullname: '',
         isLogin: false
     },
     Theme: {
@@ -27,7 +28,8 @@ const rootReducer = (state = initState, action) => {
                 ...state,   
                 Login: {
                     ...state.Login,
-                    username:action.payload,
+                    fullname: action.payload.fullname,
+                    username:action.payload.username,
                 }
             }
         }

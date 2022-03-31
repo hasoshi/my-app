@@ -1,24 +1,35 @@
 {
-    "home": {
-        "theme": "Appearance",
-        "light": "Light",
-        "dark": "Dark",
-        "lang": "Language",
-        "1": "Putthrought TransVol: ",
-        "3": "Oddlot TransVal: ",
-        "2": "1.984.252 billion",
-        "4":"12.558.999 billion",
-        "5":"Putthrought TransVal: ",
-        "6":"1.235.468 billion",
-        "7": "TransVol: ",
-        "8":"61.192.002 billion",
-        "9": "TransVal: ",
-        "logout": "Log out",
-        "text0": "Stock market: Price: ",
-        "text1": " Volumn: ",
-        "text2": " - Derivative market: Price: ",
-        "text4": " - Odd lot market: Volumn: ",
-        "footer1": "Quick order",
-        "footer2": "Price board"
-    }
+  "home": {
+    "user": "User",
+    "theme": "Appearance",
+    "light": "Light",
+    "dark": "Dark",
+    "lang": "Language",
+    "1": "Putthrought TransVol: ",
+    "3": "Oddlot TransVal: ",
+    "2": "1.984.252 billion",
+    "4":"12.558.999 billion",
+    "5":"Putthrought TransVal: ",
+    "6":"1.235.468 billion",
+    "7": "TransVol: ",
+    "8":"61.192.002 billion",
+    "9": "TransVal: ",
+    "logout": "Log out",
+    "text0": "Stock market: Price: ",
+    "text1": " Volumn: ",
+    "text2": " - Derivative market: Price: ",
+    "text4": " - Odd lot market: Volumn: ",
+    "footer1": "Quick order",
+    "footer2": "Price board"
+  },
+  "menu": {
+    "search": "Search for symbol",
+    "fs": "Favorite symbols",
+    "putthrough": "Put through",
+    "ss": "Stock screening",
+    "derivatives": "Derivatives",
+    "warrant": "Warrant",
+    "bonds": "Bonds",
+    "oddlot": "Odd lot"
+  }
 }

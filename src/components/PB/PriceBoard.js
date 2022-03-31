@@ -39,8 +39,8 @@ function PriceBoard() {
   })
   return (
     <>
-    <table className={themeMode === 'dark' ? 'dark' : 'light'} >
-      <thead>
+    <table className={themeMode === 'dark' ? 'table-dark-mode' : 'table-light-mode'} >
+      <thead className="table-title">
         <tr>
           <th colSpan="1" rowSpan="2">Mã CK</th>
           <th colSpan="1" rowSpan="2">TC</th>
