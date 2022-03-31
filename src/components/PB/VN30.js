@@ -3,7 +3,7 @@ import './PriceBoard.scss'
 import vn30 from '../../data/instruments/vn30.json';
 
 function VN30() {   
-  const DisplayData = vn30.map(data => {
+  const DisplayData = vn30.d.map(data => {
     return(
       <tr>
         <td>{data.symbol}</td>

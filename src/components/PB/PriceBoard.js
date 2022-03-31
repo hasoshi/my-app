@@ -52,8 +52,8 @@ function PriceBoard() {
         </tr>
       </thead>
       <tbody>
-        {/* <Hose/> */}
-        <VN30 />
+        <Hose/>
+        {/* <VN30 /> */}
       </tbody>
     </table>
     </>

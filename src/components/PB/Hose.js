@@ -3,7 +3,7 @@ import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
 
 function Hose() {   
-  const DisplayData = hose.map(data => {
+  const DisplayData = hose.d.map(data => {
     return(
       <tr>
         <td>{data.symbol}</td>

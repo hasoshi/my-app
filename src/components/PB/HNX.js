@@ -3,7 +3,7 @@ import './PriceBoard.scss'
 import hnx from '../../data/instruments/hnx.json';
 
 function HNX() {   
-  const DisplayData = hnx.map(data => {
+  const DisplayData = hnx.d.map(data => {
     return(
       <tr>
         <td>{data.symbol}</td>

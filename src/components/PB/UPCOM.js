@@ -3,7 +3,7 @@ import './PriceBoard.scss'
 import upcom from '../../data/instruments/upcom.json';
 
 function UPCOM() {   
-  const DisplayData = upcom.map(data => {
+  const DisplayData = upcom.d.map(data => {
     return(
       <tr>
         <td>{data.symbol}</td>
