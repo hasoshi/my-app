@@ -1,42 +1,11 @@
 import React from 'react';
 import './PriceBoard.scss'
-import hose from '../../data/instruments/hose.json';
 import { useSelector } from 'react-redux'
+import Hose from './Hose';
+import VN30 from './VN30';
 
 function PriceBoard() {   
   const themeMode = useSelector((state) => state.Theme.themeMode);
-
-  const DisplayData = hose.map(data => {
-    return(
-      <tr>
-        <td>{data.symbol}</td>
-        <td>{data.reference}</td>
-        <td>{data.ceiling}</td>
-        <td>{data.floor}</td>
-        <td>{data.bidPrice3}</td>
-        <td>{data.bidVol3}</td>
-        <td>{data.bidPrice2}</td>
-        <td>{data.bidVol2}</td>
-        <td>{data.bidPrice1}</td>
-        <td>{data.bidVol1}</td>
-        <td>{data.closePrice}</td>
-        <td>{data.closeVol}</td>
-        <td>{data.change}</td>
-        <td>{data.offerPrice1}</td>
-        <td>{data.offerVol1}</td>
-        <td>{data.offerPrice2}</td>
-        <td>{data.offerVol2}</td>
-        <td>{data.offerPrice3}</td>
-        <td>{data.offerVol3}</td>
-        <td>{data.totalTrading}</td>
-        <td>{data.totalTradingValue}</td>
-        <td>{data.high}</td>
-        <td>{data.averagePrice}</td>
-        <td>{data.low}</td>
-  
-      </tr>
-    )
-  })
   return (
     <>
     <table className={themeMode === 'dark' ? 'table-dark-mode' : 'table-light-mode'} >
@@ -83,7 +52,8 @@ function PriceBoard() {
         </tr>
       </thead>
       <tbody>
-        {DisplayData}
+        {/* <Hose/> */}
+        <VN30 />
       </tbody>
     </table>
     </>
