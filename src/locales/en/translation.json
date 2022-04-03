@@ -31,5 +31,31 @@
     "warrant": "Warrant",
     "bonds": "Bonds",
     "oddlot": "Odd lot"
+  },
+  "pb": {
+    "mack": "Symbol",
+    "tc": "Ref",
+    "tran": "Cell",
+    "san": "Floor",
+    "benmua": "Bid",
+    "gia3": "Prc 3",
+    "kl3": "Vol 3",
+    "gia2": "Prc 2",
+    "kl2": "Vol 2",
+    "gia1": "Prc 1",
+    "kl1": "Vol 1",
+    "khoplenh": "Matched",
+    "gia": "Prices",
+    "kl": "Vol",
+    "benban": "Ask",
+    "tongGT": "T. Val",
+    "tongKL": "T. Vol",
+    "cao": "High",
+    "tb": "Avg",
+    "thap": "Low",
+    "du": "Remain",
+    "đtnn": "Foreign",
+    "mua": "Bid",
+    "ban": "Ask"
   }
 }

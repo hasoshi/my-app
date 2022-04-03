@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SWITCH_THEME, GET_USER, CHANGE_LANG } from "./actionType";
+import { LOG_IN, LOG_OUT, SWITCH_THEME, GET_USER, CHANGE_LANG, MENU_TABLE, NAME_TABLE } from "./actionType";
 
 export const logins = (data) => {
     return {
@@ -30,6 +30,20 @@ export const SwitchLang = (text) => {
 export const GetUser = (data) => {
     return {
         type:GET_USER,
+        payload: data
+    }
+}
+
+export const MenuTable = (data) => {
+    return {
+        type: MENU_TABLE,
+        payload: data
+    }
+}
+
+export const NameTable = (data) => {
+    return {
+        type: NAME_TABLE,
         payload: data
     }
 }

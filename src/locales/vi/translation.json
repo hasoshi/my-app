@@ -31,5 +31,31 @@
     "warrant": "Chứng quyền",
     "bonds": "Trái phiếu doanh nghiệp",
     "oddlot": "Lô lẻ"
+  },
+  "pb": {
+    "mack": "Mã CK",
+    "tc": "TC",
+    "tran": "Trần",
+    "san": "Sàn",
+    "benmua": "Bên mua",
+    "gia3": "Giá 3",
+    "kl3": "KL 3",
+    "gia2": "Giá 2",
+    "kl2": "KL 2",
+    "gia1": "Giá 1",
+    "kl1": "KL 1",
+    "khoplenh": "Khớp lệnh",
+    "gia": "Giá",
+    "kl": "KL",
+    "benban": "Bên bán",
+    "tongGT": "Tổng GT",
+    "tongKL": "Tổng KL",
+    "cao": "Cao",
+    "tb": "TB",
+    "thap": "Thấp",
+    "du": "Dư",
+    "đtnn": "ĐTNN",
+    "mua": "Mua",
+    "ban": "Bán"
   }
 }

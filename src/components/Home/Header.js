@@ -6,7 +6,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FiClock } from 'react-icons/fi';
 import { Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { logouts, SwitchTheme, SwitchLang, GetUser } from '../../redux/actions/action';
+import { logouts, SwitchTheme, SwitchLang, GetUser, MenuTable, NameTable } from '../../redux/actions/action';
 import uk from '../../assets/image/uk.jpg'
 import vietnam from '../../assets/image/vietnam.jpg'
 import { useTranslation } from 'react-i18next';
@@ -56,7 +56,7 @@ function Header() {
   };
 
   const dispatch = useDispatch();
-
+  //check logout
   const userLogout = {username: '', fullname: ''};
   const Logout = () => {
     dispatch(logouts(false));
@@ -66,8 +66,8 @@ function Header() {
   const Fullname = useSelector((state) => state.Login.fullname);
 
   return(
-    <div className={checkTheme === 'dark' ? "header-dark-mode" : "header-light-mode"}>
-      <div className="navbar">
+    <header className={checkTheme === 'dark' ? "header-dark-mode" : "header-light-mode"}>
+      <nav className="navbar">
         <img className='logo-home' src={logo_BVSC} alt="#"/>
         <div className="date-time">
         <FiClock className="clock" size="1.5em"/>
@@ -110,7 +110,7 @@ function Header() {
         </div>
         <div className="buttons2">
           <button type="button" className="bt" onClick={Logout}>
-            <i class="fas fa-sign-out-alt"></i>{t("home.logout")}
+            <i className="fas fa-sign-out-alt"></i>{t("home.logout")}
           </button>
         </div>
         <div className="dropdown">
@@ -167,73 +167,8 @@ function Header() {
             </Dropdown.Menu>
           </Dropdown>
         </div>
-      </div>
-      <div className='menu'>
-        <ul className='primary'>
-          <li className='search-box'>
-            <input type='text' placeholder={t("menu.search")} className='input-search' />
-            <button type='submit' className='button-search'><i class="fas fa-plus"></i></button>
-          </li>
-          <li className='menu-list item'>
-            <a className='follow-list'>{t("menu.fs")} <i class="fas fa-caret-down"></i></a>
-          </li>
-            <li className='menu-list item'>
-                <a className='follow-list'>HOSE <i class="fas fa-caret-down"></i></a>
-                <ul className='sub-menu-item'>
-                    <li className='sub-menu-list'>
-                        <a><span>HOSE</span></a>
-                    </li>
-                    <li className='sub-menu-list'>
-                        <a><span>VN30</span></a>
-                    </li>
-                    <li className='sub-menu-list'>
-                        <a><span>{t("menu.putthrough")}</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li className='menu-list item '>
-                <a className='follow-list'>HNX<i class="fas fa-caret-down"></i></a>
-                <ul className='sub-menu-item'>
-                    <li className='sub-menu-list'>
-                        <a ><span>HNX</span></a>
-                    </li>
-                    <li className='sub-menu-list'>
-                        <a><span>HNX30</span></a>
-                    </li>
-                    <li className='sub-menu-list'>
-                        <a><span>{t("menu.putthrough")}</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li className='menu-list item'>
-                <a className='follow-list'>UPCOM <i class="fas fa-caret-down"></i></a>
-                <ul className='sub-menu-item'>
-                    <li className='sub-menu-list'>
-                        <a ><span>UPCOM</span></a>
-                    </li>
-                    <li className='sub-menu-list'>
-                        <a><span>{t("menu.putthrough")}</span></a>
-                    </li>
-                </ul>
-            </li>
-            <li className='menu-list item'>
-                <a className='follow-list'>{t("menu.ss")}<i class="fas fa-star"></i><i class="fas fa-caret-down"></i></a>
-            </li>
-            <li className='menu-list'>
-                <a className='follow-list'>{t("menu.derivatives")}<i class="fas fa-caret-down"></i></a>
-            </li>
-            <li className='menu-list'>
-                <a className='follow-list'>{t("menu.warrant")}</a>
-            </li>
-            <li className='menu-list'>
-                <a className='follow-list'>{t("menu.bonds")}</a>
-            </li>
-            <li className='menu-list'>
-                <a className='follow-list'>{t("menu.oddlot")}<i class="fas fa-caret-down"></i></a>
-            </li>
-        </ul>
-      </div>
-    </div>
+      </nav>
+    </header>
   )
 }
 export default Header;
