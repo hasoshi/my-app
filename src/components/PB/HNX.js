@@ -4,100 +4,75 @@ import hnx from '../../data/instruments/hnx.json';
 
 function HNX() {   
 
-  const check = (ref, cell, fl, result) => {
-    if(ref < result) {
+  const check = (ref, ceil, fl, result) => {
+    if(ref < result && result < ceil) {
       return "green";
-    }else if(result < ref) {
+    }else if(result > fl && result < ref) {
       return "red";
     }else if(result === fl) {
       return "jade-green";
-    } else if(result === cell) {
+    } else if(result === ceil) {
       return "pink";
-    }else {
+    }else if(result === ref) {
       return "yellow";
     }
   }
 
+  const changeFormat = (data) => {
+    if (data > 0) {
+        return ((Math.round(data) / 1000).toFixed(2))
+    } else {
+        return '';
+    }
+  }
+
   const tableData = hnx.d.map((data,k) => {
+    const ref = data.reference;
+    const ceil = data.ceiling;
+    const fl = data.floor;
     return(
       <>
         <tbody>
           <tr key={k}>
-          <td className='color-symbol'>{data.symbol}</td>
-          <td className='color-ref'>{(Math.round(data.reference)/1000).toFixed(2)}</td>
-          <td className='color-ceil'>{(Math.round(data.ceiling)/1000).toFixed(2)}</td>
-          <td className='color-fl'>{(Math.round(data.floor)/1000).toFixed(2)}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)}>{data.symbol}</td>
+          <td className='color-ref'>{changeFormat(ref)}</td>
+          <td className='color-ceil'>{changeFormat(ceil)}</td>
+          <td className='color-fl'>{changeFormat(fl)}</td>
           {/* Bên mua */}
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidPrice3)}>
-            {(Math.round(data.bidPrice3)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidVol3)}>
-            {(Math.round(data.bidVol3)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidPrice2)}>
-            {(Math.round(data.bidPrice2)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidVol2)}>
-            {(Math.round(data.bidVol2)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidPrice1)}>
-            {(Math.round(data.bidPrice1)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.bidVol1)}>
-            {(Math.round(data.bidVol1)/1000).toFixed(2)}
-          </td>
+          <td className={check(ref, ceil, fl, data.bidPrice3)}>{changeFormat(data.bidPrice3)}</td>
+          <td className={check(ref, ceil, fl, data.bidPrice3)}>{changeFormat(data.bidVol3)}</td>
+          <td className={check(ref, ceil, fl, data.bidPrice2)}>{changeFormat(data.bidPrice2)}</td>
+          <td className={check(ref, ceil, fl, data.bidPrice2)}>{changeFormat(data.bidVol2)}</td>
+          <td className={check(ref, ceil, fl, Number(data.bidPrice1))}>{changeFormat(Number(data.bidPrice1))}</td>
+          <td className={check(ref, ceil, fl, Number(data.bidPrice1))}>{changeFormat(data.bidVol1)}</td>
           {/* Khớp lệnh*/}
-          <td className={check(data.reference, data.ceiling, data.floor, data.closePrice)}>
-            {(Math.round(data.closePrice)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.closeVol)}>
-            {(Math.round(data.closeVol)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.change)}>
-            {(Math.round(data.change)/1000).toFixed(2)}
-            </td>
+          <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.closePrice)}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.closeVol)}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.change)}</td>
           <td></td>
          
           {/* Bên bán */}
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerPrice1)}>
-            {(Math.round(data.offerPrice1)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerVol1)}>
-            {(Math.round(data.offerVol1)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerPrice2)}>
-            {(Math.round(data.offerPrice2)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerVol2)}>
-            {(Math.round(data.offerVol2)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerPrice3)}>
-            {(Math.round(data.offerPrice3)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.offerVol3)}>
-            {(Math.round(data.offerVol3)/1000).toFixed(2)}
-          </td>
+          <td className={check(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(Number(data.offerPrice1))}</td>
+          <td className={check(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(data.offerVol1)}</td>
+          <td className={check(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerPrice2)}</td>
+          <td className={check(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerVol2)}</td>
+          <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerPrice3)}</td>
+          <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerVol3)}</td>
 
           {/* Tổng GT */}
-          <td>{(Math.round(data.totalTrading)/1000).toFixed(2)}</td>
-          <td>{(Math.round(data.totalTradingValue)/1000).toFixed(2)}</td>
+          <td>{changeFormat(data.totalTrading)}</td>
+          <td>{changeFormat(data.totalTradingValue)}</td>
       
-          <td className={check(data.reference, data.ceiling, data.floor, data.high)}>
-            {(Math.round(data.high)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.averagePrice)}>
-            {(Math.round(data.averagePrice)/1000).toFixed(2)}
-          </td>
-          <td className={check(data.reference, data.ceiling, data.floor, data.low)}>
-            {(Math.round(data.low)/1000).toFixed(2)}
-          </td>
+          <td className={check(ref, ceil, fl, data.high)}>{changeFormat(data.high)}</td>
+          <td className={check(ref, ceil, fl, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>
+          <td className={check(ref, ceil, fl, data.low)}>{changeFormat(data.low)}</td>
           {/* Dư */}
           <td></td>
           <td></td>
           {/* ĐTNN */}
-          <td>{(Math.round(data.foreignBuy)/1000).toFixed(2)}</td>
-          <td>{(Math.round(data.foreignSell)/1000).toFixed(2)}</td>
-          <td>{(Math.round(data.foreignRemain)/1000).toFixed(2)}</td>
+          <td>{changeFormat(data.foreignBuy)}</td>
+          <td>{changeFormat(data.foreignSell)}</td>
+          <td>{changeFormat(data.foreignRemain)}</td>
           </tr>
         </tbody>
       </>
