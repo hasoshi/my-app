@@ -61,7 +61,7 @@ function VN30() {
 
           {/* Tổng GT */}
           <td>{changeFormat(data.totalTrading)}</td>
-          <td>{changeFormat(data.totalTradingValue)}</td>
+          {/* <td>{changeFormat(data.totalTradingValue)}</td> */}
       
           <td className={check(ref, ceil, fl, data.high)}>{changeFormat(data.high)}</td>
           <td className={check(ref, ceil, fl, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>
