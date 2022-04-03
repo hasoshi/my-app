@@ -3,21 +3,19 @@ import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
 
 function HOSE() {   
-
   const check = (ref, cell, fl, result) => {
     if(ref < result) {
       return "green";
-    }else if(result < ref) {
+    } else if(result < ref) {
       return "red";
-    }else if(result === fl) {
+    } else if(result === fl) {
       return "jade-green";
     } else if(result === cell) {
       return "pink";
-    }else {
+    } else if (result === ref) {
       return "yellow";
     }
   }
-
   const tableData = hose.d.map((data,k) => {
     return(
       <>
