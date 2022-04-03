@@ -10,17 +10,17 @@ import Menu from './Menu';
 function Home() {
   const themeMode = useSelector((state) => state.Theme.themeMode)
   const { t } = useTranslation();
-
-  // const langMode = useSelector((state) => state.Lang.langis)
+ 
   return(
     <>
     <div className={themeMode === 'dark' ? "home-dark-mode" : "home-light-mode"}>
+    {/* <div className={themeMode === 'dark' ? "theme-dark" : "theme-light"}> */}
       <Header/>
       <Menu/>
       <PriceBoard/> 
     </div>
     {/* Footer */}
-      <div class="footer">
+      <div className="footer">
         <div className="footer-item">
         <span className="t">{t("home.text0")}</span><span className="n">x1000</span>
         <span className="t">{t("home.text1")}</span><span className="n">x10</span>
