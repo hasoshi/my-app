@@ -1,25 +1,33 @@
-.menu-dark-mode {
+@import '../../assets/theme/theme.scss' ;
+
+.menu {
   display: flex;
   left: 0;
   top: 40px;
   align-items: center;
   z-index: 1;
-  background-color: #232323;
   position: fixed;
   width: 100%;
   height: 50px;
+  @include themify($themes){
+    background-color: themed('menubackground');
+  }
   i {
     margin-left: 8px;
   }
   .fa-star {
-    color: #f39200;
+    @include themify($themes){
+      color: themed('fa-star');
+    }
     font-size: 11px;
   }
   .search-box{
     display: flex;
     align-items: center;
     .input-search{
-      background-color: #d2d2d2;
+      @include themify($themes){
+        background-color: themed('input-search');
+      }
       border: none;
       border-radius: 3px 0 0 3px;
       color: #666;
@@ -57,42 +65,54 @@
       display: block;
     }
     .menu-list {
-      color: white;
+      @include themify($themes){
+        color: themed('menu-list');
+      }
       .sub-menu-item{
           list-style-type: none;
           position:fixed;
           width: 250px;
-          border-top: 2px solid #236abb;
+          // border-top: 2px solid #236abb;
           display: none;
           
           .sub-menu-list{
             padding: 8px;
-            background-color: #3a3a3a;
+            @include themify($themes){
+              background-color: themed('sub-menu-list');
+            }
             font-size: 13px;
             cursor: pointer;
-            margin-left: -28px;
+            margin-left: -27px;
           }
           .sub-menu-list-done{
             padding: 8px;
             background-color: #236abb;
             font-size: 13px;
             cursor: pointer;
-            margin-left: -28px;
+            margin-left: -27px;
+            @include themify($themes){
+              color: themed('sub-menu-list-done');
+            }
           }
           .sub-menu-list:hover{
-            background-color:#222222;
+            @include themify($themes){
+              background-color: themed('sub-menu-listhover');
+            }
             cursor: pointer;
-            
           }
         }
       .follow-list:hover{
-        background-color: #236abb;
-        color: #fff;
+        @include themify($themes){
+          background-color: themed('follow-listhover');
+          color: themed('follow-listhovercolor');
+        }
       }   
       .follow-list{
         display: flex;
         align-items: center;
-        background: #3a3a3a;
+        @include themify($themes){
+          background-color: themed('follow-list');
+        }
         border-radius: 3px 3px 0 0;
         height: 32px;
         font-size: 14px;
@@ -112,129 +132,10 @@
         margin-left: 5px;
         padding: 10px;
         cursor: pointer;
+        @include themify($themes){
+          color: themed('follow-list-done');
+        }
       }
     }
   }
-}
-.menu-light-mode {
-  display: flex;
-  left: 0;
-  top: 40px;
-  align-items: center;
-  z-index: 1;
-  background-color: #e6e6e6;
-  position: fixed;
-  width: 100%;
-  height: 50px;
-  i {
-    margin-left: 8px;
-  }
-  .fa-star {
-    color: #f39200;
-    font-size: 11px;
-  }
-  .search-box{
-    display: flex;
-    align-items: center;
-    .input-search{
-      background-color: #d2d2d2;
-      border: none;
-      border-radius: 3px 0 0 3px;
-      box-sizing: border-box;
-      color: #666;
-      font-family: Helvetica, Arial, Sans-Serif;
-      font-size: 13px;
-      height: 28px;
-      padding: 0 5px;
-      position: relative;
-      vertical-align: top;
-      width: 170px;
-    }
-    .input-search:hover, .input-search:focus{
-      background-color: #fff;
-      color: #333;
-    }
-    .button-search{
-      border-radius: 0 3px 3px 0;
-      display: inline-block;
-      height: 28px;
-      width: 30px;
-      padding: 0 0px;
-      border: 0;
-      color: white;
-      background-color: #236abb;
-      text-align: center;
-      font-size: 12px;
-      outline-style: none;
-    }
-  }
-  .primary{
-    list-style-type: none;
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    .item:hover .sub-menu-item{
-      display: block;
-    }
-    .menu-list {
-      color: #232323;
-      .sub-menu-item{
-        list-style-type: none;
-        position: absolute;
-        width: 200px;
-        margin-top: 1px;
-        margin-left: 5px;
-        border-top: 2px solid #236abb;
-        display: none;
-      .sub-menu-list{
-        padding: 8px;
-        background: #e6e6e6;
-        font-size: 13px;
-        cursor: pointer;
-        margin-left: -31px;
-      }
-      .sub-menu-list-done{
-        padding: 8px;
-        background-color: #236abb;
-        font-size: 13px;
-        cursor: pointer;
-        color: #e6e6e6;
-        margin-left: -31px;
-      }
-      .sub-menu-list:hover{
-        background-color: #f3d2aa;
-        cursor: pointer;
-      }
-      }
-      .follow-list:hover{
-        background-color: #236abb;
-        color: #fff;
-      }       
-      .follow-list{
-        display: flex;
-        align-items: center;
-        background: #d2d2d2;
-        border-radius: 3px 3px 0 0;
-        height: 33px;
-        font-size: .8rem;
-        line-height: 30px;
-        margin-left: 5px;
-        padding: 10px;
-        cursor: pointer;
-      }
-      .follow-list-done{
-        display: flex;
-        align-items: center;
-        background: #236abb;
-        border-radius: 3px 3px 0 0;
-        height: 32px;
-        font-size: 14px;
-        line-height: 30px;
-        margin-left: 5px;
-        padding: 10px;
-        cursor: pointer;
-        color: #e6e6e6;
-      }
-    }
-  } 
 }

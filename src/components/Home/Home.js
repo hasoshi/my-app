@@ -13,11 +13,12 @@ function Home() {
  
   return(
     <>
-    <div className={themeMode === 'dark' ? "home-dark-mode" : "home-light-mode"}>
-    {/* <div className={themeMode === 'dark' ? "theme-dark" : "theme-light"}> */}
+    <div className={themeMode === 'dark' ? "theme-dark" : "theme-light"}>
+      <div className='home'>
       <Header/>
       <Menu/>
-      <PriceBoard/> 
+      <PriceBoard/>
+      </div>
     </div>
     {/* Footer */}
       <div className="footer">

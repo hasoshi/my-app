@@ -25,7 +25,6 @@ function HOSE() {
         return '';
     }
   }
-
   const tableData = hose.d.map((data,k) => {
     const ref = data.reference;
     const ceil = data.ceiling;
@@ -60,8 +59,8 @@ function HOSE() {
           <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerVol3)}</td>
 
           {/* Tổng GT */}
-          <td>{changeFormat(data.totalTrading)}</td>
-          {/* <td>{changeFormat(data.totalTradingValue)}</td> */}
+          <td className='TVAL'>{changeFormat(data.totalTrading)}</td>
+          <td className='TVOL'>{changeFormat(data.totalTradingValue)}</td>
       
           <td className={check(ref, ceil, fl, data.high)}>{changeFormat(data.high)}</td>
           <td className={check(ref, ceil, fl, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>

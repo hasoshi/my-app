@@ -1,10 +1,9 @@
-.home-dark-mode {
-    background-color: #242424;
-    position: absolute;
-    width: 100%;
-}
-.home-light-mode {
-    background-color: #f5f5f5;
+@import '../../assets/theme/theme.scss' ;
+
+.home {
+    @include themify($themes){
+        background-color: themed('homebackground');
+    }
     position: absolute;
     width: 100%;
 }

@@ -13,8 +13,9 @@ const initState = {
     },
     Table: {
         table: 'HOSE',
-        menu_table: 'HOSE'
+        menu_table: 'HOSE',
     }
+
 }
 const rootReducer = (state = initState, action) => {
     switch (action.type) {

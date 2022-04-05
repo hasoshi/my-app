@@ -6,7 +6,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FiClock } from 'react-icons/fi';
 import { Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { logouts, SwitchTheme, SwitchLang, GetUser, MenuTable, NameTable } from '../../redux/actions/action';
+import { logouts, SwitchTheme, SwitchLang, GetUser } from '../../redux/actions/action';
 import uk from '../../assets/image/uk.jpg'
 import vietnam from '../../assets/image/vietnam.jpg'
 import { useTranslation } from 'react-i18next';
@@ -25,7 +25,8 @@ function Header() {
   //check theme mode
   const themeMode = useSelector((state) => state.Theme.themeMode)
   const [checkTheme, setCheckTheme] = useState(themeMode)
-
+  const dispatch = useDispatch();
+  
   const changeHandlerTheme = (e) => {
     setCheckTheme(e.target.value);
     dispatch(SwitchTheme(
@@ -55,7 +56,6 @@ function Header() {
     }
   };
 
-  const dispatch = useDispatch();
   //check logout
   const userLogout = {username: '', fullname: ''};
   const Logout = () => {
@@ -66,8 +66,9 @@ function Header() {
   const Fullname = useSelector((state) => state.Login.fullname);
 
   return(
-    <header className={checkTheme === 'dark' ? "header-dark-mode" : "header-light-mode"}>
-      <nav className="navbar">
+    <div className={checkTheme === 'dark' ? "theme-dark" : "theme-light"}>
+      <header>
+      <nav className="header">
         <img className='logo-home' src={logo_BVSC} alt="#"/>
         <div className="date-time">
         <FiClock className="clock" size="1.5em"/>
@@ -168,7 +169,8 @@ function Header() {
           </Dropdown>
         </div>
       </nav>
-    </header>
+      </header>
+    </div>
   )
 }
 export default Header;

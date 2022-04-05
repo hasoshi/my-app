@@ -1,135 +1,82 @@
-.table-dark-mode {
-  table {
+@import '../../assets/theme/theme.scss' ;
+
+.pb {
+  width: 100%;
+  transition: .4s;
+  table-layout:auto;
+  border-collapse: collapse;
+  margin-top: 90px;
+  text-align: center;
+  @include themify($themes){
+    background-color: themed('tablebackground');
+    border: 1px solid themed('tableborder');
+    color: themed('tablecolor');
+  }
+  font-size: 12px;
+  .table-title {
+    position: sticky;     
+    top: 85px;
+    @include themify($themes){
+      background-color: themed('table-title');
+      color: themed('table-title-color');
+    }
+    table-layout: fixed;
+  }
+  td, th{
+    @include themify($themes){
+      border: 1px solid themed('td-thborder');
+    }
+    padding: 5px;
     width: 100%;
-    transition: .4s;
-    table-layout:auto;
-    border-collapse: collapse;
-    margin-top: 90px;
-    text-align: center;
-    background-color: #000000;
-    font-size: 12px;
-    border: 1px solid #343434;
-    color: #f5f5f5;
-    .table-title {
-      position: sticky;     
-      top: 85px;
-      background-color: #1f1f1f;
-      color: #f0f8ff;
-      table-layout: fixed;
+    width: 50px;
+  }
+  .color-ref {
+    @include themify($themes){
+      color: themed('color-ref');
+      background-color: themed('color-refbg')
+    };
+    font-weight: 500;
+  }
+  .color-ceil {
+    @include themify($themes){
+      color: themed('color-ceil');
+      background-color: themed('color-refbg')
+    };
+    font-weight: 450;
+  }
+  .color-fl {
+    @include themify($themes){
+      color: themed('color-fl');
+      background-color: themed('color-refbg')
     }
-    td, th{
-      border: 1px solid #343434;
-      padding: 5px;
-      width: 100%;
-      width: 50px;
+    font-weight: 450;
+  }
+  .red {
+    color: #f53e3e;
+    font-weight: 450;
+  }
+  .green {
+    color: #1ac316;
+    font-weight: 450;
+  }
+  .yellow {
+    color: #d4b001;
+    font-weight: 450;
+  }
+  .jade-green {
+    color: #00c5c5;
+    font-weight: 450;
+  }
+  .pink {
+    color: #ff25ff;
+    font-weight: 450;
+  }
+  tbody tr:hover {
+    @include themify($themes){
+      background-color: themed('tbody-background')
     }
-    .click-left {
-      cursor: pointer;
-      padding: 5px;
-      position: absolute;
-      z-index: 2;
-      display: inline-block;
-    }
-    .click-right {
-      padding: 5px;
-      position: absolute;
-      z-index: 2;
-      display: inline-block;
-    }
-    .click-left:hover {
-      cursor: pointer;
-      background-color: #00ff00;
-    }
-    .click-right:hover {
-      background-color: #00ff00;
-      cursor: pointer;
-    }
-    .color-ref {
-      color: #ffd900;
-      background-color: #404040;
-    }
-    .color-ceil {
-      color: #ff25ff;
-      background-color: #404040;
-    }
-    .color-fl {
-      color: #1eeeee;
-      background-color: #404040;
-    }
-    .red {
-      color: #ff0000;
-    }
-    .green {
-      color: #00ff00;
-    }
-    .yellow {
-      color: #ffd900;
-    }
-    .jade-green {
-      color: #1eeeee;
-    }
-    .pink {
-      color: #ff25ff;
-    }
-    tbody tr:hover {
-      background-color: #404040;
-      cursor: pointer;
-    }
+    cursor: pointer;
   }
 }
-.table-light-mode {
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 90px;
-    text-align: center;
-    background-color: #f5f5f5 ;
-    font-size: 12px;
-    border: 1px solid #333333;
-    color: #333333;
-    .table-title {
-      position: sticky;
-      top: 85px;
-      background-color: #f5f5f5;
-      color: #333333;
-    }
-    td, th{
-      border: 1px solid #cbcbcb;
-      padding: 5px;
-    }
-    .color-symbol {
-      font-weight: bold;
-    }
-    .color-ref {
-      color: #d4b001;
-      background-color: #dedede;
-    }
-    .color-ceil {
-      color: #ff25ff;
-      background-color: #dedede;
-    }
-    .color-fl {
-      color: #1eeeee;
-      background-color: #dedede;
-    }
-    .red {
-      color: #ff0000;
-    }
-    .green {
-      color: #00ff00;
-    }
-    .yellow {
-      color: #ffd900;
-    }
-    .jade-green {
-      color: #1eeeee;
-    }
-    .pink {
-      color: #ff25ff;
-    }
-    tbody tr:hover {
-      background-color: #dedede;
-      cursor: pointer;
-    }
-  }
-}
+
+
