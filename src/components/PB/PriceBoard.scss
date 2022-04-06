@@ -77,6 +77,31 @@
     }
     cursor: pointer;
   }
+  @keyframes green-background-fade {
+    50% {
+      background: rgba(0, 128, 0, 0.3);
+    }
+    100% {
+      background: #fff;
+    }
+  }
+  
+  @keyframes red-background-fade {
+    50% {
+      background: rgba(128, 0, 0, 0.3);
+    }
+    100% {
+      background: #fff;
+    }
+  }
+  
+  .background-green {
+    animation: green-background-fade 2s forwards;
+  }
+  .background-red {
+    animation: red-background-fade 2s forwards;
+  }
+  
 }
 
 

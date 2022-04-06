@@ -1,8 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
+import { parse } from '@fortawesome/fontawesome-svg-core';
 
 function HOSE() {   
+
+  const changeFormat = (data) => {
+    if (data > 0) {
+        return ((Math.round(data) / 1000).toFixed(2))
+    } else {
+        return '';
+    }
+  }
+
+  let get20Data = hose.d.slice(0, 20)
+  const start = 0 
+  const end = Math.floor(Math.random() * (20 - 10)) + 10
+  const [data, setData] = useState(get20Data);
+
+  const randomValue = (min, max) => {
+    let value = Math.floor(Math.random() * (max - min + 1) + min)
+    // value = parseFloat(value / 1000).toFixed(2) * 1000;
+    return value;
+  }
+  
+  const ChangeData = () => {
+    get20Data.slice(start, end).map((data) => {
+        if (data.bidPrice2 && data.bidPrice3 &&
+          data.offerPrice1 && data.offerPrice2 && data.offerPrice3 &&
+          data.closePrice !== undefined) {
+          randomValue(data.floor, data.ceiling)
+          return (
+            setData(get20Data.slice(0, 10)),
+            data.bidPrice3 = randomValue(data.floor, data.ceiling),
+            data.bidPrice2 = randomValue(data.floor, data.ceiling),
+            data.offerPrice1 = randomValue(data.floor, data.ceiling),
+            data.offerPrice2 = randomValue(data.floor, data.ceiling),
+            data.offerPrice3 = randomValue(data.floor, data.ceiling),
+            data.closePrice = randomValue(data.floor, data.ceiling)
+            )
+        }else {
+            return ''
+        }
+    })
+  }
+  useEffect(() => {
+      setInterval(ChangeData, 3000)
+  }, [])
 
   const check = (ref, ceil, fl, result) => {
     if(ref < result && result < ceil) {
@@ -15,14 +59,6 @@ function HOSE() {
       return "pink";
     }else if(result === ref) {
       return "yellow";
-    }
-  }
-
-  const changeFormat = (data) => {
-    if (data > 0) {
-        return ((Math.round(data) / 1000).toFixed(2))
-    } else {
-        return '';
     }
   }
   const tableData = hose.d.map((data,k) => {
@@ -60,7 +96,7 @@ function HOSE() {
 
           {/* Tổng GT */}
           <td className='TVAL'>{changeFormat(data.totalTrading)}</td>
-          <td className='TVOL'>{changeFormat(data.totalTradingValue)}</td>
+          {/* <td className='TVOL'>{changeFormat(data.totalTradingValue)}</td> */}
       
           <td className={check(ref, ceil, fl, data.high)}>{changeFormat(data.high)}</td>
           <td className={check(ref, ceil, fl, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>
