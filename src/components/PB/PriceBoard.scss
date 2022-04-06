@@ -77,31 +77,69 @@
     }
     cursor: pointer;
   }
+
   @keyframes green-background-fade {
     50% {
-      background: rgba(0, 128, 0, 0.3);
+      background: #AFEEEE;
     }
     100% {
-      background: #fff;
+      background: transparent;
+    }
+  }
+
+  @keyframes jade-green-background-fade {
+    50% {
+      background: #99FFFF;
+    }
+    100% {
+      background: transparent;
     }
   }
   
   @keyframes red-background-fade {
     50% {
-      background: rgba(128, 0, 0, 0.3);
+      background: #FFE4E1;
     }
     100% {
-      background: #fff;
+      background: transparent;
     }
   }
-  
-  .background-green {
-    animation: green-background-fade 2s forwards;
+  @keyframes yellow-background-fade {
+    50% {
+      background: #FFFF00;
+    }
+    100% {
+      background: transparent;
+    }
   }
-  .background-red {
-    animation: red-background-fade 2s forwards;
+  @keyframes pink-background-fade {
+    50% {
+      background: #FF00FF;
+    }
+    100% {
+      background: transparent;
+    }
   }
-  
+  .green-hl {
+    color: green;
+    animation: green-background-fade 1s forwards;  
+}
+.red-hl {
+    color: red;
+    animation: red-background-fade 1s forwards;  
+}
+.yellow-hl {
+    color: #f3c117;
+    animation: yellow-background-fade 1s forwards;  
+}
+.pink-hl{
+    color: #eb34ba;
+    animation: pink-background-fade 1s forwards;  
+}
+.jade-green-hl{
+    color: #14a4c7;
+    animation: jade-green-background-fade 1s forwards;  
+  }
 }
 
 

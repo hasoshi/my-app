@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './PriceBoard.scss'
 import hose from '../../data/instruments/hose.json';
-import { parse } from '@fortawesome/fontawesome-svg-core';
 
 function HOSE() {   
 
@@ -13,14 +12,13 @@ function HOSE() {
     }
   }
 
-  let get20Data = hose.d.slice(0, 20)
+  let get20Data = hose.d.slice(0, 20) 
   const start = 0 
-  const end = Math.floor(Math.random() * (20 - 10)) + 10
+  const end = Math.floor(Math.random() * (20 - 10)) + 10 
   const [data, setData] = useState(get20Data);
 
   const randomValue = (min, max) => {
     let value = Math.floor(Math.random() * (max - min + 1) + min)
-    // value = parseFloat(value / 1000).toFixed(2) * 1000;
     return value;
   }
   
@@ -34,6 +32,7 @@ function HOSE() {
             setData(get20Data.slice(0, 10)),
             data.bidPrice3 = randomValue(data.floor, data.ceiling),
             data.bidPrice2 = randomValue(data.floor, data.ceiling),
+            data.bidPrice1 = randomValue(data.floor, data.ceiling),
             data.offerPrice1 = randomValue(data.floor, data.ceiling),
             data.offerPrice2 = randomValue(data.floor, data.ceiling),
             data.offerPrice3 = randomValue(data.floor, data.ceiling),
@@ -61,6 +60,22 @@ function HOSE() {
       return "yellow";
     }
   }
+
+  const checkHighLight = (ref, ceil, fl, result) => {
+    if(ref < result && result < ceil) {
+      return "green-hl";
+    }else if(result > fl && result < ref) {
+      return "red-hl";
+    }else if(result === fl) {
+      return "jade-green-hl";
+    } else if(result === ceil) {
+      return "pink-hl";
+    }else if(result === ref) {
+      return "yellow-hl";
+    }
+  }
+
+
   const tableData = hose.d.map((data,k) => {
     const ref = data.reference;
     const ceil = data.ceiling;
@@ -74,24 +89,24 @@ function HOSE() {
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
           {/* Bên mua */}
-          <td className={check(ref, ceil, fl, data.bidPrice3)}>{changeFormat(data.bidPrice3)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.bidPrice3)}>{changeFormat(data.bidPrice3)}</td>
           <td className={check(ref, ceil, fl, data.bidPrice3)}>{changeFormat(data.bidVol3)}</td>
-          <td className={check(ref, ceil, fl, data.bidPrice2)}>{changeFormat(data.bidPrice2)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.bidPrice2)}>{changeFormat(data.bidPrice2)}</td>
           <td className={check(ref, ceil, fl, data.bidPrice2)}>{changeFormat(data.bidVol2)}</td>
-          <td className={check(ref, ceil, fl, Number(data.bidPrice1))}>{changeFormat(Number(data.bidPrice1))}</td>
+          <td className={checkHighLight(ref, ceil, fl, Number(data.bidPrice1))}>{changeFormat(Number(data.bidPrice1))}</td>
           <td className={check(ref, ceil, fl, Number(data.bidPrice1))}>{changeFormat(data.bidVol1)}</td>
           {/* Khớp lệnh*/}
-          <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.closePrice)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.closePrice)}>{changeFormat(data.closePrice)}</td>
           <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.closeVol)}</td>
-          <td className={check(ref, ceil, fl, data.closePrice)}>{changeFormat(data.change)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.closePrice)}>{changeFormat(data.change)}</td>
           <td></td>
          
           {/* Bên bán */}
-          <td className={check(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(Number(data.offerPrice1))}</td>
+          <td className={checkHighLight(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(Number(data.offerPrice1))}</td>
           <td className={check(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(data.offerVol1)}</td>
-          <td className={check(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerPrice2)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerPrice2)}</td>
           <td className={check(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerVol2)}</td>
-          <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerPrice3)}</td>
+          <td className={checkHighLight(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerPrice3)}</td>
           <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerVol3)}</td>
 
           {/* Tổng GT */}
@@ -119,5 +134,5 @@ function HOSE() {
     </>
   );
 }
- 
+
 export default HOSE;
