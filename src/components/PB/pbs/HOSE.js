@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './PriceBoard.scss'
-import hose from '../../data/instruments/hose.json';
+import '../main/PriceBoard.scss'
+import hose from '../../../data/instruments/hose.json';
 
 function HOSE() {   
 
@@ -12,15 +12,19 @@ function HOSE() {
     }
   }
 
-  let get20Data = hose.d.slice(0, 20) 
+  let get20Data = hose.d.slice(0, 20) //chọn 20 dòng đầu (mã CK đầu)
   const start = 0 
-  const end = Math.floor(Math.random() * (20 - 10)) + 10 
+  const end = Math.floor(Math.random() * (20 - 10)) + 10;
+  //end: lấy các giá trị trong khoảng [10,19] => có 20 số
+  //vd: 10,11,...,19
+
   const [data, setData] = useState(get20Data);
 
   const randomValue = (min, max) => {
     let value = Math.floor(Math.random() * (max - min + 1) + min)
+    console.log(value);
     return value;
-  }
+  } //random giá trị để thay đổi trong khoảng max = ceiling, min = floor
   
   const ChangeData = () => {
     get20Data.slice(start, end).map((data) => {

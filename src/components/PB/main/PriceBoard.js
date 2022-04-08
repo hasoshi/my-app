@@ -1,10 +1,10 @@
 import React from 'react';
-import './PriceBoard.scss'
+import '../main/PriceBoard.scss'
 import { useSelector } from 'react-redux'
-import HOSE from './HOSE';
-import VN30 from './VN30';
-import UPCOM from './UPCOM';
-import HNX from './HNX';
+import HOSE from '../pbs/HOSE';
+import VN30 from '../pbs/VN30';
+import UPCOM from '../pbs/UPCOM';
+import HNX from '../pbs/HNX';
 import { useTranslation } from 'react-i18next';
 
 function PriceBoard() {   

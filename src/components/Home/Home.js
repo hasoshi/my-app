@@ -4,7 +4,7 @@ import '../Home/Home.scss';
 import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import { useSelector } from 'react-redux';
-import PriceBoard from '../PB/PriceBoard';
+import PriceBoard from '../PB/main/PriceBoard';
 import Menu from './Menu';
 
 function Home() {
