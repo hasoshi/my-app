@@ -14,6 +14,17 @@ function HNX() {
     }
   }
 
+  const [show, setShow] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
+  const hanldeClick = (selectedRec) => {
+      setSelectedData(selectedRec);
+      setShow(true);
+  };
+
+  const hideModal = () => {
+      setShow(false);
+  };
+
   let get20Data = hnx.d.slice(0, 20) 
   const [data, setData] = useState(get20Data);
 
@@ -118,7 +129,7 @@ function HNX() {
       <>
         <tbody>
           <tr key={k}>
-          <td className={check(ref, ceil, fl, data.closePrice)}>{data.symbol}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
           <td className='color-ref'>{changeFormat(ref)}</td>
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
@@ -165,8 +176,24 @@ function HNX() {
   return (
     <>
     {tableData}
+    {show && <Modal details={selectedData} handleClose={hideModal} />}
     </>
   );
 }
+
+const Modal = ({handleClose, details}) => {
+  return (
+    <div className="modal">
+    <div className="modal-main">
+      <button onClick={handleClose} id='close'>X</button>
+      <div className='modal-header'>
+        {details?.FullName}
+      </div>
+      <div className="modal-body">
+      </div>
+    </div>
+  </div>
+  );
+};
 
 export default HNX;

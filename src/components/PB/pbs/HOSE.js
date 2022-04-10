@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../main/PriceBoard.scss'
 import hose from '../../../data/instruments/hose.json';
 
+const COLUMNS = ["bidPrice1", "bidPrice2", "bidPrice3", "offerPrice1", "offerPrice2", "offerPrice3"];
 function HOSE() {   
 
   const changeFormat = (data) => {
@@ -12,41 +13,86 @@ function HOSE() {
     }
   }
 
-  let get20Data = hose.d.slice(0, 20) //chọn 20 dòng đầu (mã CK đầu)
-  const start = 0 
-  const end = Math.floor(Math.random() * (20 - 10)) + 10;
-  //end: lấy các giá trị trong khoảng [10,19] => có 20 số
-  //vd: 10,11,...,19
+  const [show, setShow] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
+  const hanldeClick = (selectedRec) => {
+    setSelectedData(selectedRec);
+    setShow(true);
+  };
 
+  const hideModal = () => {
+    setShow(false);
+  };
+
+  let get20Data = hose.d.slice(0, 20);
   const [data, setData] = useState(get20Data);
 
+  //random giá trị
   const randomValue = (min, max) => {
     let value = Math.floor(Math.random() * (max - min + 1) + min)
-    console.log(value);
     return value;
-  } //random giá trị để thay đổi trong khoảng max = ceiling, min = floor
+  }
+
+  //random các ô (vị trí cột + hàng), cellNumber = tổng số ô
+  const randomizeCells = (cellNumber, i = 0, result = []) => {
+    const columnIndex = randomValue(0, COLUMNS.length); //random cột cần change value
+    const cellValue = randomValue(0, 14); //random giá trị ô 15 dòng đầu
+    const pair = `${COLUMNS[columnIndex]}:${cellValue}`; // xác định vị trí cột và vị trí dòng (vị trí ô)
+    // console.log("columnIndex:", columnIndex);
+    // console.log("cellValue:", cellValue);
+    // console.log("pair:", pair);
+    // console.log("------");
+    if (!result.includes(pair)) { //tìm kiếm pair trong result, 
+      i++; //nếu pair k có trong result thì tăng i
+    } else {
+      return randomizeCells(cellNumber, i, result);
+    }
+    if (i === 6) {
+      return result;
+    }
+    result.push(pair);
+    return randomizeCells(cellNumber, i, result);
+  };
+ 
+  //update giá trị cho các ô
+  const updateRandomInfoValues = ({ data, cellIndex, randomCells }) => {
+    const infoKeys = Object.keys(data); //xác định key dạng object
+    // console.log(infoKeys);
+    for (const infoKey of infoKeys) {
+      if (randomCells.some((cell) => cell === `${infoKey}:${cellIndex}`)) {
+        // console.log("$$$",`${infoKey}:${cellIndex}`);
+        data[infoKey] = randomValue(data.floor, data.ceiling);
+      }
+    }
+    return data;
+    
+  };
   
   const ChangeData = () => {
-    get20Data.slice(start, end).map((data) => {
-        if (data.bidPrice2 && data.bidPrice3 &&
-          data.offerPrice1 && data.offerPrice2 && data.offerPrice3 &&
-          data.closePrice !== undefined) {
-          randomValue(data.floor, data.ceiling)
-          return (
-            setData(get20Data.slice(0, 10)),
-            data.bidPrice3 = randomValue(data.floor, data.ceiling),
-            data.bidPrice2 = randomValue(data.floor, data.ceiling),
-            data.bidPrice1 = randomValue(data.floor, data.ceiling),
-            data.offerPrice1 = randomValue(data.floor, data.ceiling),
-            data.offerPrice2 = randomValue(data.floor, data.ceiling),
-            data.offerPrice3 = randomValue(data.floor, data.ceiling),
-            data.closePrice = randomValue(data.floor, data.ceiling)
-            )
-        }else {
-            return ''
-        }
-    })
-  }
+    const randomCells = randomizeCells(10);
+    console.log(randomCells);
+    get20Data.slice().map((data, index) => {
+      if (data.bidPrice1 && data.bidPrice2 && data.bidPrice3 &&
+        data.offerPrice1 && data.offerPrice2 && data.offerPrice3 &&
+        data.closePrice !== undefined) {
+        const updatedInfo = updateRandomInfoValues({
+          data: data,
+          cellIndex: index,
+          randomCells: randomCells
+        });
+        return (
+          setData(get20Data.slice(0, 20)),
+          data.bidPrice1 = updatedInfo.bidPrice1,
+          data.bidPrice2 = updatedInfo.bidPrice2,
+          data.bidPrice3 = updatedInfo.bidPrice3,
+          data.offerPrice2 = updatedInfo.offerPrice2,
+          data.offerPrice3 = updatedInfo.bidPrice3
+        );
+      } else {
+        return "";
+      }
+    });
+  };
   useEffect(() => {
       setInterval(ChangeData, 3000)
   }, [])
@@ -88,7 +134,7 @@ function HOSE() {
       <>
         <tbody>
           <tr key={k}>
-          <td className={check(ref, ceil, fl, data.closePrice)}>{data.symbol}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
           <td className='color-ref'>{changeFormat(ref)}</td>
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
@@ -135,8 +181,23 @@ function HOSE() {
   return (
     <>
     {tableData}
+    {show && <Modal details={selectedData} handleClose={hideModal} />}
     </>
   );
 }
+const Modal = ({handleClose, details}) => {
+  return (
+  <div className="modal">
+    <div className="modal-main">
+      <button onClick={handleClose} id='close'>X</button>
+      <div className='modal-header'>
+        {details?.FullName}
+      </div>
+      <div className="modal-body">
+      </div>
+    </div>
+  </div>
+  );
+};
 
 export default HOSE;

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../main/PriceBoard.scss'
 import vn30 from '../../../data/instruments/vn30.json';
 
+const CHANGING_COLUMNS = ["bidPrice1", "bidPrice2", "bidPrice3", "offerPrice1", "offerPrice2", "offerPrice3"];
+
 function VN30() {   
 
   const changeFormat = (data) => {
@@ -12,37 +14,80 @@ function VN30() {
     }
   }
 
+  const [show, setShow] = useState(false);
+  const [selectedData, setSelectedData] = useState({});
+  const hanldeClick = (selectedRec) => {
+      setSelectedData(selectedRec);
+      setShow(true);
+  };
+
+  const hideModal = () => {
+      setShow(false);
+  };
+
   let get20Data = vn30.d.slice(0, 20) 
-  const start = 0 
-  const end = Math.floor(Math.random() * (20 - 10)) + 10 
   const [data, setData] = useState(get20Data);
 
+  //random giá trị [floor, ceiling]
   const randomValue = (min, max) => {
     let value = Math.floor(Math.random() * (max - min + 1) + min)
     return value;
   }
+
+  //random các ô 
+  const randomizeCells = (cellNumber, i = 0, result = []) => {
+    const columnIndex = randomValue(0, CHANGING_COLUMNS.length);
+    const cellValue = randomValue(0, 9);
+    const pair = `${CHANGING_COLUMNS[columnIndex]}:${cellValue}`;
+    if (!result.includes(pair)) {
+      i++;
+    } else {
+      return randomizeCells(cellNumber, i, result);
+    }
+    if (i === 6) {
+      return result;
+      
+    }
+    result.push(pair);
+    return randomizeCells(cellNumber, i, result);
+  };
+  // console.log(result);
+
+  const updateRandomInfoValues = ({ data, cellIndex, randomCells }) => {
+    const infoKeys = Object.keys(data);
+    for (const infoKey of infoKeys) {
+      if (randomCells.some((cell) => cell === `${infoKey}:${cellIndex}`)) {
+        data[infoKey] = randomValue(data.floor, data.ceiling);
+      }
+    }
+    return data;
+  };
   
   const ChangeData = () => {
-    get20Data.slice(start, end).map((data) => {
-        if (data.bidPrice2 && data.bidPrice3 &&
-          data.offerPrice1 && data.offerPrice2 && data.offerPrice3 &&
-          data.closePrice !== undefined) {
-          randomValue(data.floor, data.ceiling)
-          return (
-            setData(get20Data.slice(0, 10)),
-            data.bidPrice3 = randomValue(data.floor, data.ceiling),
-            data.bidPrice2 = randomValue(data.floor, data.ceiling),
-            data.bidPrice1 = randomValue(data.floor, data.ceiling),
-            data.offerPrice1 = randomValue(data.floor, data.ceiling),
-            data.offerPrice2 = randomValue(data.floor, data.ceiling),
-            data.offerPrice3 = randomValue(data.floor, data.ceiling),
-            data.closePrice = randomValue(data.floor, data.ceiling)
-            )
-        }else {
-            return ''
-        }
-    })
-  }
+    const randomCells = randomizeCells(10);
+    get20Data.slice().map((data, index) => {
+      console.log(index);
+      if (data.bidPrice1 && data.bidPrice2 && data.bidPrice3 &&
+        data.offerPrice1 && data.offerPrice2 && data.offerPrice3 &&
+        data.closePrice !== undefined) {
+        const updatedInfo = updateRandomInfoValues({
+          data: data,
+          randomCells: randomCells,
+          cellIndex: index
+        });
+        return (
+          setData(get20Data.slice(0, 10)),
+          data.bidPrice1 = updatedInfo.bidPrice1,
+          data.bidPrice2 = updatedInfo.bidPrice2,
+          data.bidPrice3 = updatedInfo.bidPrice3,
+          data.offerPrice2 = updatedInfo.offerPrice2,
+          data.offerPrice3 = updatedInfo.bidPrice3
+        );
+      } else {
+        return "";
+      }
+    });
+  };
   useEffect(() => {
       setInterval(ChangeData, 3000)
   }, [])
@@ -84,7 +129,7 @@ function VN30() {
       <>
         <tbody>
           <tr key={k}>
-          <td className={check(ref, ceil, fl, data.closePrice)}>{data.symbol}</td>
+          <td className={check(ref, ceil, fl, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
           <td className='color-ref'>{changeFormat(ref)}</td>
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
@@ -131,8 +176,24 @@ function VN30() {
   return (
     <>
     {tableData}
+    {show && <Modal details={selectedData} handleClose={hideModal} />}
     </>
   );
 }
+
+const Modal = ({handleClose, details}) => {
+  return (
+    <div className="modal">
+    <div className="modal-main">
+      <button onClick={handleClose} id='close'>X</button>
+      <div className='modal-header'>
+        {details?.FullName}
+      </div>
+      <div className="modal-body">
+      </div>
+    </div>
+  </div>
+  );
+};
 
 export default VN30;
