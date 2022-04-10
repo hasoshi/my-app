@@ -44,7 +44,7 @@ function HNX() {
     } else {
       return randomizeCells(cellNumber, i, result);
     }
-    if (i === 6) {
+    if (i === 10) {
       return result;
       
     }
@@ -64,7 +64,7 @@ function HNX() {
   };
   
   const ChangeData = () => {
-    const randomCells = randomizeCells(10);
+    const randomCells = randomizeCells();
     get20Data.slice().map((data, index) => {
       console.log(index);
       if (data.bidPrice1 && data.bidPrice2 && data.bidPrice3 &&
@@ -76,7 +76,7 @@ function HNX() {
           cellIndex: index
         });
         return (
-          setData(get20Data.slice(0, 10)),
+          setData(get20Data.slice()),
           data.bidPrice1 = updatedInfo.bidPrice1,
           data.bidPrice2 = updatedInfo.bidPrice2,
           data.bidPrice3 = updatedInfo.bidPrice3,

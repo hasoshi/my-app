@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import './Menu.scss';
+import '../Menu/Menu.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { MenuTable, NameTable } from '../../redux/actions/action';
+import { MenuTable, NameTable } from '../../../redux/actions/action';
 import { useTranslation } from 'react-i18next';
 
 function Menu() {

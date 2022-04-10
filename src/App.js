@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Home from "./components/Home/Home";
+import Home from "./components/Home/Home/Home";
 import { path } from "./routes/path";
 import Login from "./components/Login/Login";
 import { checkLogin } from './redux/selectors/selectorLogin'

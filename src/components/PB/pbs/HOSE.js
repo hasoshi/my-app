@@ -47,7 +47,7 @@ function HOSE() {
     } else {
       return randomizeCells(cellNumber, i, result);
     }
-    if (i === 6) {
+    if (i === 10) { //chọn 10 điểm
       return result;
     }
     result.push(pair);
@@ -69,7 +69,7 @@ function HOSE() {
   };
   
   const ChangeData = () => {
-    const randomCells = randomizeCells(10);
+    const randomCells = randomizeCells();
     console.log(randomCells);
     get20Data.slice().map((data, index) => {
       if (data.bidPrice1 && data.bidPrice2 && data.bidPrice3 &&
@@ -81,7 +81,7 @@ function HOSE() {
           randomCells: randomCells
         });
         return (
-          setData(get20Data.slice(0, 20)),
+          setData(get20Data.slice()),
           data.bidPrice1 = updatedInfo.bidPrice1,
           data.bidPrice2 = updatedInfo.bidPrice2,
           data.bidPrice3 = updatedInfo.bidPrice3,

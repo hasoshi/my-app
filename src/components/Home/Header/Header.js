@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import './Header.scss';
-import logo_BVSC from '../../assets/image/logo_BVSC.png';
+import logo_BVSC from '../../../assets/image/logo_BVSC.png';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { FiClock } from 'react-icons/fi';
 import { Dropdown } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { logouts, SwitchTheme, SwitchLang, GetUser } from '../../redux/actions/action';
-import uk from '../../assets/image/uk.jpg'
-import vietnam from '../../assets/image/vietnam.jpg'
+import { logouts, SwitchTheme, SwitchLang, GetUser } from '../../../redux/actions/action';
+import uk from '../../../assets/image/uk.jpg'
+import vietnam from '../../../assets/image/vietnam.jpg'
 import { useTranslation } from 'react-i18next';
 
 function Header() {

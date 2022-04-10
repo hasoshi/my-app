@@ -44,7 +44,7 @@ function UPCOM() {
     } else {
       return randomizeCells(cellNumber, i, result);
     }
-    if (i === 6) {
+    if (i === 10) {
       return result;
       
     }
@@ -76,7 +76,7 @@ function UPCOM() {
           cellIndex: index
         });
         return (
-          setData(get20Data.slice(0, 10)),
+          setData(get20Data.slice()),
           data.bidPrice1 = updatedInfo.bidPrice1,
           data.bidPrice2 = updatedInfo.bidPrice2,
           data.bidPrice3 = updatedInfo.bidPrice3,

@@ -2,10 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Home/Home.scss';
 import { useTranslation } from 'react-i18next';
-import Header from './Header';
+import Header from '../Header/Header';
 import { useSelector } from 'react-redux';
-import PriceBoard from '../PB/main/PriceBoard';
-import Menu from './Menu';
+import PriceBoard from '../../PB/main/PriceBoard';
+import Menu from '../Menu/Menu';
 
 function Home() {
   const themeMode = useSelector((state) => state.Theme.themeMode)
