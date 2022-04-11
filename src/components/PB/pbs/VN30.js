@@ -190,6 +190,24 @@ const Modal = ({handleClose, details}) => {
         {details?.FullName}
       </div>
       <div className="modal-body">
+        <table class="table-modal">
+          <thead>
+            <tr>
+              <th scope="col">Mã CK</th>
+              <th scope="col">Giá</th>
+              <th scope="col">+/-</th>
+              <th scope="col">KL</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{details?.symbol}</td>
+              <td>{details?.closePrice}</td>
+              <td>{details?.change}</td>
+              <td>{details?.closeVol}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
