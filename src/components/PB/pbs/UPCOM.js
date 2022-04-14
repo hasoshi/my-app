@@ -37,7 +37,7 @@ function UPCOM() {
   //random các ô (vị trí cột + hàng), cellNumber = tổng số ô
   const randomizeCells = (cellNumber, i = 0, result = []) => {
     const columnIndex = randomValue(0, COLUMNS.length); //random cột cần change value
-    const cellValue = randomValue(0, 14); //random giá trị ô 15 dòng đầu
+    const cellValue = randomValue(0, 9); //random giá trị ô 15 dòng đầu
     const pair = `${COLUMNS[columnIndex]}:${cellValue}`; // xác định vị trí cột và vị trí dòng (vị trí ô)
     // console.log("columnIndex:", columnIndex);
     // console.log("cellValue:", cellValue);
@@ -56,7 +56,7 @@ function UPCOM() {
   };
  
   //update giá trị cho các ô
-  const updateRandomInfoValues = ({ data, cellIndex, randomCells }) => {
+  const updateRandomInfoValues = ({ data: {...data}, cellIndex, randomCells }) => {
     const infoKeys = Object.keys(data); //xác định key dạng object
     // console.log(infoKeys);
     for (const infoKey of infoKeys) {
@@ -81,7 +81,6 @@ function UPCOM() {
           cellIndex: index,
           randomCells: randomCells
         });
-          setData(get20Data.slice())
           let bidPrice1 = updatedInfo.bidPrice1
           let bidPrice2 = updatedInfo.bidPrice2
           let bidPrice3 = updatedInfo.bidPrice3
@@ -93,11 +92,9 @@ function UPCOM() {
           data.bidPrice3_classHightLight = getHightLight(data.bidPrice3, bidPrice3, data),
           data.bidPrice2_classHightLight = getHightLight(data.bidPrice2, bidPrice2, data),
           data.bidPrice1_classHightLight = getHightLight(data.bidPrice1, bidPrice1, data),
-
           data.offerPrice1_classHightLight = getHightLight(data.offerPrice1, offerPrice1, data),
           data.offerPrice2_classHightLight = getHightLight(data.offerPrice2, offerPrice2, data),
           data.offerPrice3_classHightLight = getHightLight(data.offerPrice3, offerPrice3, data),
-
           data.closePrice_classHightLight = getHightLight(data.closePrice, closePrice, data),
           
           data.bidPrice1 = bidPrice1,
@@ -112,41 +109,15 @@ function UPCOM() {
         return "";
       }
     });
+    setData(get20Data.slice())
     setTimeout(function() {
       clearHightLight()
     }, 1000)
+    
   };
   useEffect(() => {
       setInterval(ChangeData, 3000)
   }, [])
-
-  // const check = (ref, ceil, fl, result) => {
-  //   if(ref < result && result < ceil) {
-  //     return "green";
-  //   }else if(result > fl && result < ref) {
-  //     return "red";
-  //   }else if(result === fl) {
-  //     return "jade-green";
-  //   } else if(result === ceil) {
-  //     return "pink";
-  //   }else if(result === ref) {
-  //     return "yellow";
-  //   }
-  // }
-
-  // const checkHighLight = (ref, ceil, fl, result) => {
-  //   if(ref < result && result < ceil) {
-  //     return "green-hl";
-  //   }else if(result > fl && result < ref) {
-  //     return "red-hl";
-  //   }else if(result === fl) {
-  //     return "jade-green-hl";
-  //   } else if(result === ceil) {
-  //     return "pink-hl";
-  //   }else if(result === ref) {
-  //     return "yellow-hl";
-  //   }
-  // }
 
   const getHightLight = (currentValue, value, data) => {
     let className = ''
@@ -192,25 +163,7 @@ function UPCOM() {
     }
     return className
   }
-  const setColorBeside = (name, data, Prc) => {
-    let className=''
-    if(Prc === data.reference) {
-      className = 'yellow-color'
-    }else if(Prc === data.ceiling) {
-      className = 'purple-color'
-    }else if(Prc === data.floor) {
-      className = 'blue-color'
-    } else if(Prc > data.reference) {
-      className = 'green-color'
-    }else {
-      className = 'red-color'
-    }
-    if(data[name + '_classHightLight']) {
-      className = className + ' ' + data[name + '_classHightLight']
-    }
-    return className
-  }
-
+  
   const tableData = upcom.d.map((data,k) => {
     const ref = data.reference;
     const ceil = data.ceiling;
@@ -219,7 +172,7 @@ function UPCOM() {
       <>
         <tbody>
           <tr key={k}>
-          <td className={setColor(data, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
+          <td className={setColor('closePrice', data, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
           <td className='color-ref'>{changeFormat(ref)}</td>
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
@@ -237,20 +190,20 @@ function UPCOM() {
           <td></td>
          
           {/* Bên bán */}
-          {/* <td className={checkHighLight(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(Number(data.offerPrice1))}</td>
-          <td className={check(ref, ceil, fl, Number(data.offerPrice1))}>{changeFormat(data.offerVol1)}</td>
-          <td className={checkHighLight(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerPrice2)}</td>
-          <td className={check(ref, ceil, fl, data.offerPrice2)}>{changeFormat(data.offerVol2)}</td>
-          <td className={checkHighLight(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerPrice3)}</td>
-          <td className={check(ref, ceil, fl, data.offerPrice3)}>{changeFormat(data.offerVol3)}</td> */}
+          <td className={setColor('offerPrice1', data, Number(data.offerPrice1))}>{changeFormat(Number(data.offerPrice1))}</td>
+          <td className={setColor('offerVol1', data, Number(data.offerPrice1))}>{changeFormat(data.offerVol1)}</td>
+          <td className={setColor('offerPrice2', data, data.offerPrice2)}>{changeFormat(data.offerPrice2)}</td>
+          <td className={setColor('offerVol2', data, data.offerPrice2)}>{changeFormat(data.offerVol2)}</td>
+          <td className={setColor('offerPrice3', data, data.offerPrice3)}>{changeFormat(data.offerPrice3)}</td>
+          <td className={setColor('offerVol3', data, data.offerPrice3)}>{changeFormat(data.offerVol3)}</td>
 
           {/* Tổng GT */}
-          {/* <td className='TVAL'>{changeFormat(data.totalTrading)}</td> */}
-          {/* <td className='TVOL'>{changeFormat(data.totalTradingValue)}</td> */}
+          <td className='TVAL'>{changeFormat(data.totalTrading)}</td> 
+           {/* <td className='TVOL'>{changeFormat(data.totalTradingValue)}</td> */}
       
-          {/* <td className={check(ref, ceil, fl, data.high)}>{changeFormat(data.high)}</td>
-          <td className={check(ref, ceil, fl, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>
-          <td className={check(ref, ceil, fl, data.low)}>{changeFormat(data.low)}</td> */}
+          <td className={setColor('high', data, data.high)}>{changeFormat(data.high)}</td>
+          <td className={setColor('averagePrice', data, data.averagePrice)}>{changeFormat(data.averagePrice)}</td>
+          <td className={setColor('low', data, data.low)}>{changeFormat(data.low)}</td> 
           {/* Dư */}
           <td></td>
           <td></td>

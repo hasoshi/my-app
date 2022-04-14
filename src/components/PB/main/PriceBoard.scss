@@ -168,18 +168,23 @@
   //high light
   .hight-light-green {
     background: #1ac316;
+    color: white;
 }
 .hight-light-red {
-    background: #f53e3e;
+    background: red;
+    color: white;
 }
 .hight-light-yellow {
     background: #d4b001;
+    color:rgba(0, 0, 0, 0.9)
 }
 .hight-light-purple {
     background: #ff25ff;
+    color: white;
 }
 .hight-light-blue {
     background: #00c5c5;
+    color: white;
   }
   .modal {
     position: fixed;
