@@ -11,8 +11,8 @@ function PriceBoard() {
 
   const { t } = useTranslation();
   const themeMode = useSelector((state) => state.Theme.themeMode);
-
   const Menu_table = useSelector((state) => state.Table.table);
+  const SlideStatus = useSelector((state) => state.Slide.isShow)
 
   const Change_table = () => {
     if(Menu_table === 'HOSE') {
@@ -25,7 +25,13 @@ function PriceBoard() {
       return (<UPCOM/>);
     }
   }
-  
+  const setSlideShow = () => {
+    if(SlideStatus === true){
+      return 'slide'
+    }else{
+      return 'stop'
+    }
+  }
   return (
     <div className={themeMode === 'dark' ? 'theme-dark' : 'theme-light'} >
       <table className='pb'>
@@ -71,7 +77,9 @@ function PriceBoard() {
             <th colSpan="1" rowSpan="1">{t("pb.du")}</th>
           </tr>
         </thead>
+        {/* <tbody className={setSlideShow()}> */}
           {Change_table()}
+        {/* </tbody> */}
       </table>
     </div>
   );

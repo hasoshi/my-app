@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, SWITCH_THEME, GET_USER, CHANGE_LANG, MENU_TABLE, NAME_TABLE } from "./actionType";
+import { SLIDE_SHOW, LOG_IN, LOG_OUT, SWITCH_THEME, GET_USER, CHANGE_LANG, MENU_TABLE, NAME_TABLE } from "./actionType";
 
 export const logins = (data) => {
     return {
@@ -45,6 +45,13 @@ export const NameTable = (data) => {
     return {
         type: NAME_TABLE,
         payload: data
+    }
+}
+
+export const TurnSlide = (data) => {
+    return{
+        type:SLIDE_SHOW,
+        payload:data
     }
 }
 

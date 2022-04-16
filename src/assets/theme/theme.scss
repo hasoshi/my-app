@@ -31,6 +31,7 @@ $themes: (
     color-ceil: #ff25ff,
     color-fl: #1eeeee,
     tbody-background: #404040,
+    tablehover:#333333,
     //modal
     modal-headerbackground: #236abb,
     modal-background: #232323,
@@ -72,10 +73,12 @@ $themes: (
     color-ceil: #ff25ff,
     color-fl: #00c5c5,
     tbody-background: #dedede, 
+    tablehover:#d6d4d4,
     //modal
     modal-headerbackground: #236abb,
     modal-background: #f5f5f5,
-    table-modal: #333333
+    table-modal: #333333,
+
   )
 );
 

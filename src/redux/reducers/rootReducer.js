@@ -1,4 +1,4 @@
-import { LOG_IN, LOG_OUT, GET_USER, SWITCH_THEME, CHANGE_LANG, MENU_TABLE, NAME_TABLE } from "../actions/actionType";
+import { LOG_IN, LOG_OUT, GET_USER, SWITCH_THEME, CHANGE_LANG, MENU_TABLE, NAME_TABLE, SLIDE_SHOW } from "../actions/actionType";
 const initState = {
     Login: {
         username: '',
@@ -14,7 +14,11 @@ const initState = {
     Table: {
         table: 'HOSE',
         menu_table: 'HOSE',
-    }
+    },
+    Slide: {
+        isShow: false
+    },
+
 
 }
 const rootReducer = (state = initState, action) => {
@@ -79,6 +83,15 @@ const rootReducer = (state = initState, action) => {
                     menu_table: action.payload
                 }
             }
+        case SLIDE_SHOW: {
+            return{
+                ...state,
+                Slide:{
+                    ...state.Slide,
+                    isShow:action.payload
+                }
+            }
+        }
         default:
             return state;
     }

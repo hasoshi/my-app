@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Menu/Menu.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { MenuTable, NameTable } from '../../../redux/actions/action';
+import { MenuTable, NameTable, TurnSlide } from '../../../redux/actions/action';
 import { useTranslation } from 'react-i18next';
 
 function Menu() {
@@ -35,6 +35,20 @@ function Menu() {
     setTable('UPCOM')
     dispatch(MenuTable('UPCOM'))
   }
+  const slideStatus = useSelector((state)=> state.Slide.isShow)
+  const [slide,setSlide] = useState(slideStatus)
+  const OnSlide = () => {
+    dispatch(TurnSlide(!slide))
+    setSlide(!slide)
+  }
+  const setActiveIcon = () => {
+    if(slideStatus){
+      return 'activeSlide'
+    }else{
+      return 'icon-toggle'
+    }
+  }
+
   return(
     <div className={themeMode === 'dark' ? "theme-dark" : "theme-light"}>
       <div className='menu'>
@@ -100,6 +114,13 @@ function Menu() {
           <li className='menu-list'>
             <a className='follow-list'>{t("menu.oddlot")}<i className="fas fa-caret-down"></i></a>
           </li>
+          {/* <li className='slideshow'>
+            <ul className='secondary icon-toggle-two'>
+              <li className={setActiveIcon()} onClick={OnSlide}>
+                <a className='icon-secondary'><i class="fas fa-video"></i></a>
+              </li>
+            </ul>
+          </li> */}
         </ul>
       </div>
     </div>

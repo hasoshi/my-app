@@ -168,11 +168,14 @@ function UPCOM() {
     const ref = data.reference;
     const ceil = data.ceiling;
     const fl = data.floor;
+    const styleMCK = {
+      fontWeight: 'bold'
+    }
     return(
       <>
         <tbody>
           <tr key={k}>
-          <td className={setColor('closePrice', data, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
+          <td style={styleMCK} className={setColor('closePrice', data, data.closePrice)} onClick={() => hanldeClick(data)}>{data.symbol}</td>
           <td className='color-ref'>{changeFormat(ref)}</td>
           <td className='color-ceil'>{changeFormat(ceil)}</td>
           <td className='color-fl'>{changeFormat(fl)}</td>
