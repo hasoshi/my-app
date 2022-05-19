@@ -116,7 +116,7 @@ function HOSE() {
     
   };
   useEffect(() => {
-      setInterval(ChangeData, 3000)
+      setInterval(ChangeData, 1000)
   }, [])
 
   const getHightLight = (currentValue, value, data) => {
